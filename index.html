@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced IT Career Quiz | By Abdelhamid Khaled</title>
+    <title>English Jobs Career Quiz | By Abdelhamid Khaled</title>
     <style>
         :root {
             --primary-color: #2c3e50;
@@ -351,454 +351,417 @@
         }
 
         // Quiz Questions Array
-        const questions = [
-            // Beginner Level Questions (10)
-            {
-                question: "What is the main responsibility of a Software Developer?",
-                options: [
-                    "Writing and maintaining computer programs",
-                    "Managing databases only",
-                    "Fixing computer hardware",
-                    "Managing network security"
-                ],
-                correctAnswer: 0,
-                difficulty: "beginner"
-            },
-            {
-                question: "What does IT stand for in the context of career paths?",
-                options: [
-                    "Information Technology",
-                    "Internet Things",
-                    "Internal Tools",
-                    "Interface Testing"
-                ],
-                correctAnswer: 0,
-                difficulty: "beginner"
-            },
-            {
-                question: "What is the primary role of a Help Desk Technician?",
-                options: [
-                    "Providing technical support to users",
-                    "Developing software applications",
-                    "Managing databases",
-                    "Designing networks"
-                ],
-                correctAnswer: 0,
-                difficulty: "beginner"
-            },
-            {
-                question: "What is the main tool used by programmers to write code?",
-                options: [
-                    "Code Editor",
-                    "Web Browser",
-                    "Spreadsheet Software",
-                    "Email Client"
-                ],
-                correctAnswer: 0,
-                difficulty: "beginner"
-            },
-            {
-                question: "What is the primary purpose of a computer network?",
-                options: [
-                    "Sharing resources between computers",
-                    "Playing video games",
-                    "Storing photos",
-                    "Creating documents"
-                ],
-                correctAnswer: 0,
-                difficulty: "beginner"
-            },
-            {
-                question: "What is the main role of a System Administrator?",
-                options: [
-                    "Managing and maintaining computer systems",
-                    "Creating websites",
-                    "Writing software",
-                    "Designing graphics"
-                ],
-                correctAnswer: 0,
-                difficulty: "beginner"
-            },
-            {
-                question: "What is the purpose of antivirus software?",
-                options: [
-                    "Protecting computers from malicious software",
-                    "Making computers faster",
-                    "Creating backups",
-                    "Managing emails"
-                ],
-                correctAnswer: 0,
-                difficulty: "beginner"
-            },
-            {
-                question: "What is a database used for?",
-                options: [
-                    "Storing and organizing data",
-                    "Playing music",
-                    "Writing documents",
-                    "Drawing pictures"
-                ],
-                correctAnswer: 0,
-                difficulty: "beginner"
-            },
-            {
-                question: "What is the main responsibility of a Web Developer?",
-                options: [
-                    "Creating and maintaining websites",
-                    "Repairing computers",
-                    "Managing networks",
-                    "Writing business reports"
-                ],
-                correctAnswer: 0,
-                difficulty: "beginner"
-            },
-            {
-                question: "What is the purpose of a backup?",
-                options: [
-                    "Saving copies of important data",
-                    "Speeding up the computer",
-                    "Improving internet connection",
-                    "Installing new software"
-                ],
-                correctAnswer: 0,
-                difficulty: "beginner"
-            },
-
-            // Intermediate Level Questions (10)
-            {
-                question: "What is the role of a Network Administrator?",
-                options: [
-                    "Managing and securing computer networks",
-                    "Creating mobile applications",
-                    "Writing technical documentation",
-                    "Designing user interfaces"
-                ],
-                correctAnswer: 0,
-                difficulty: "intermediate"
-            },
-            {
-                question: "What does a Business Analyst in IT do?",
-                options: [
-                    "Analyzes business needs and recommends technical solutions",
-                    "Repairs computer hardware",
-                    "Develops mobile applications",
-                    "Manages social media accounts"
-                ],
-                correctAnswer: 0,
-                difficulty: "intermediate"
-            },
-            {
-                question: "What is the primary role of a Database Administrator?",
-                options: [
-                    "Managing and maintaining databases",
-                    "Creating websites",
-                    "Writing software applications",
-                    "Designing network infrastructure"
-                ],
-                correctAnswer: 0,
-                difficulty: "intermediate"
-            },
-            {
-                question: "What does a Quality Assurance (QA) Engineer do?",
-                options: [
-                    "Tests software for bugs and quality issues",
-                    "Develops new programming languages",
-                    "Manages client relationships",
-                    "Designs hardware components"
-                ],
-                correctAnswer: 0,
-                difficulty: "intermediate"
-            },
-            {
-                question: "What is the main responsibility of a DevOps Engineer?",
-                options: [
-                    "Combining development and operations practices",
-                    "Creating marketing strategies",
-                    "Managing human resources",
-                    "Designing user interfaces"
-                ],
-                correctAnswer: 0,
-                difficulty: "intermediate"
-            },
-            {
-                question: "What does a Cloud Administrator manage?",
-                options: [
-                    "Cloud-based services and infrastructure",
-                    "Office equipment",
-                    "Customer complaints",
-                    "Social media accounts"
-                ],
-                correctAnswer: 0,
-                difficulty: "intermediate"
-            },
-            {
-                question: "What is the role of a Systems Integration Engineer?",
-                options: [
-                    "Connecting different systems to work together",
-                    "Writing user manuals",
-                    "Managing social media",
-                    "Repairing printers"
-                ],
-                correctAnswer: 0,
-                difficulty: "intermediate"
-            },
-            {
-                question: "What does an IT Project Manager do?",
-                options: [
-                    "Manages IT project timelines and resources",
-                    "Repairs hardware",
-                    "Writes code",
-                    "Designs logos"
-                ],
-                correctAnswer: 0,
-                difficulty: "intermediate"
-            },
-            {
-                question: "What is the main role of a Security Analyst?",
-                options: [
-                    "Monitoring and protecting against security threats",
-                    "Developing mobile apps",
-                    "Managing databases",
-                    "Creating websites"
-                ],
-                correctAnswer: 0,
-                difficulty: "intermediate"
-            },
-            {
-                question: "What does a Data Scientist do in IT?",
-                options: [
-                    "Analyzes complex data sets to find patterns",
-                    "Repairs computer networks",
-                    "Manages social media",
-                    "Writes technical documents"
-                ],
-                correctAnswer: 0,
-                difficulty: "intermediate"
-            },
-
-            // Expert Level Questions (20)
-            {
-                question: "What is Kubernetes used for in IT infrastructure?",
-                options: [
-                    "Container orchestration and management",
-                    "Database management",
-                    "Network security",
-                    "Web development"
-                ],
-                correctAnswer: 0,
-                difficulty: "expert"
-            },
-            {
-                question: "What is the principle behind blockchain technology?",
-                options: [
-                    "Distributed ledger with cryptographic security",
-                    "Centralized data storage",
-                    "Cloud computing",
-                    "Artificial intelligence"
-                ],
-                correctAnswer: 0,
-                difficulty: "expert"
-            },
-            {
-                question: "What is quantum computing's main advantage?",
-                options: [
-                    "Solving complex problems exponentially faster",
-                    "Lower power consumption",
-                    "Cheaper hardware costs",
-                    "Simpler programming"
-                ],
-                correctAnswer: 0,
-                difficulty: "expert"
-            },
-            {
-                question: "What is the zero-trust security model?",
-                options: [
-                    "Never trust, always verify",
-                    "Trust all internal networks",
-                    "Verify once, trust always",
-                    "Trust but verify"
-                ],
-                correctAnswer: 0,
-                difficulty: "expert"
-            },
-            {
-                question: "What is edge computing's primary benefit?",
-                options: [
-                    "Reduced latency and bandwidth usage",
-                    "Increased storage capacity",
-                    "Better user interfaces",
-                    "Improved database performance"
-                ],
-                correctAnswer: 0,
-                difficulty: "expert"
-            },
-            {
-                question: "What is the main principle of DevSecOps?",
-                options: [
-                    "Integrating security practices throughout development",
-                    "Separate security from development",
-                    "Testing only after deployment",
-                    "Manual security checks"
-                ],
-                correctAnswer: 0,
-                difficulty: "expert"
-            },
-            {
-                question: "What is the purpose of infrastructure as code (IaC)?",
-                options: [
-                    "Automating infrastructure deployment and management",
-                    "Writing better software code",
-                    "Managing databases",
-                    "Creating user interfaces"
-                ],
-                correctAnswer: 0,
-                difficulty: "expert"
-            },
-            {
-                question: "What is the key concept of machine learning?",
-                options: [
-                    "Systems learning from data without explicit programming",
-                    "Manual data analysis",
-                    "Hardware optimization",
-                    "Network security"
-                ],
-                correctAnswer: 0,
-                difficulty: "expert"
-            },
-            {
-                question: "What is the main purpose of artificial neural networks?",
-                options: [
-                    "Mimicking human brain function for problem solving",
-                    "Storing data efficiently",
-                    "Managing networks",
-                    "Processing payments"
-                ],
-                correctAnswer: 0,
-                difficulty: "expert"
-            },
-            {
-                question: "What is the primary goal of site reliability engineering (SRE)?",
-                options: [
-                    "Creating scalable and reliable software systems",
-                    "Website design",
-                    "Network maintenance",
-                    "Database optimization"
-                ],
-                correctAnswer: 0,
-                difficulty: "expert"
-            },
-            {
-                question: "What is the main principle of microservices architecture?",
-                options: [
-                    "Breaking applications into small, independent services",
-                    "Creating one large application",
-                    "Minimizing code reuse",
-                    "Avoiding cloud services"
-                ],
-                correctAnswer: 0,
-                difficulty: "expert"
-            },
-            {
-                question: "What is the key benefit of serverless computing?",
-                options: [
-                    "Automatic scaling and reduced infrastructure management",
-                    "Having more servers",
-                    "Increased security",
-                    "Better user interfaces"
-                ],
-                correctAnswer: 0,
-                difficulty: "expert"
-            },
-            {
-                question: "What is the main purpose of data lakes?",
-                options: [
-                    "Storing vast amounts of raw data in native format",
-                    "Replacing databases",
-                    "Improving network speed",
-                    "Managing emails"
-                ],
-                correctAnswer: 0,
-                difficulty: "expert"
-            },
-            {
-                question: "What is the principle of chaos engineering?",
-                options: [
-                    "Testing system resilience by introducing failures",
-                    "Creating system chaos",
-                    "Random programming",
-                    "Unstructured testing"
-                ],
-                correctAnswer: 0,
-                difficulty: "expert"
-            },
-            {
-                question: "What is the main goal of GitOps?",
-                options: [
-                    "Managing infrastructure and applications through Git",
-                    "Version control only",
-                    "Code testing",
-                    "User interface design"
-                ],
-                correctAnswer: 0,
-                difficulty: "expert"
-            },
-            {
-                question: "What is the primary purpose of service mesh?",
-                options: [
-                    "Managing service-to-service communication in microservices",
-                    "Internet connectivity",
-                    "Database management",
-                    "User authentication"
-                ],
-                correctAnswer: 0,
-                difficulty: "expert"
-            },
-            {
-                question: "What is the main concept of event-driven architecture?",
-                options: [
-                    "Systems responding to events as they occur",
-                    "Sequential processing",
-                    "Batch processing",
-                    "Manual intervention"
-                ],
-                correctAnswer: 0,
-                difficulty: "expert"
-            },
-            {
-                question: "What is the key principle of continuous deployment?",
-                options: [
-                    "Automatically deploying all changes to production",
-                    "Manual deployment",
-                    "Weekly releases",
-                    "Monthly updates"
-                ],
-                correctAnswer: 0,
-                difficulty: "expert"
-            },
-            {
-                question: "What is the main purpose of API gateways?",
-                options: [
-                    "Managing and securing API traffic",
-                    "Creating APIs",
-                    "Testing software",
-                    "Storing data"
-                ],
-                correctAnswer: 0,
-                difficulty: "expert"
-            },
-            {
-                question: "What is the primary goal of DataOps?",
-                options: [
-                    "Improving quality and reducing cycle time in data analytics",
-                    "Data storage only",
-                    "Manual data processing",
-                    "Hardware management"
-                ],
-                correctAnswer: 0,
-                difficulty: "expert"
-            }
-        ];
-
+{
+    "questions": [
+        {
+            "question": "What is the primary responsibility of a Database Systems Manager?",
+            "options": [
+                "Overseeing database operations and security",
+                "Writing software applications",
+                "Managing help desk tickets",
+                "Designing websites"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What is a primary task of an Application Programmer?",
+            "options": [
+                "Creating and maintaining computer applications",
+                "Managing databases",
+                "Providing customer support",
+                "Designing networks"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What is the main duty of an IT Support Team Leader?",
+            "options": [
+                "Managing support staff and issue resolution",
+                "Programming applications",
+                "Administering databases",
+                "Designing networks"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What characterizes an IT Support Specialist's work?",
+            "options": [
+                "Providing technical assistance and problem resolution",
+                "Programming applications",
+                "Managing databases",
+                "Designing websites"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What is a Desktop Support Technician's primary duty?",
+            "options": [
+                "Providing on-site and remote technical support",
+                "Developing applications",
+                "Managing databases",
+                "Creating websites"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What tools does a Software Developer commonly use?",
+            "options": [
+                "Programming IDEs and version control systems",
+                "Database management tools",
+                "Help desk software",
+                "Project management tools"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What qualifications are needed for a Support Technician?",
+            "options": [
+                "Technical troubleshooting skills and IT certifications",
+                "Software development expertise",
+                "Database management",
+                "Project management"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What are the basic responsibilities of a Help Desk Technician?",
+            "options": [
+                "Answering technical queries and resolving basic IT issues",
+                "Managing databases",
+                "Programming software",
+                "Designing networks"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What skills are crucial for a Support Technician?",
+            "options": [
+                "Technical troubleshooting and customer service",
+                "Software development",
+                "Database management",
+                "Project coordination"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What is the basic function of a System Administrator?",
+            "options": [
+                "Maintaining computer systems and networks",
+                "Developing software",
+                "Managing projects",
+                "Creating websites"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What role does a Database Systems Engineer play?",
+            "options": [
+                "Designing and implementing database architectures",
+                "Managing customer support",
+                "Developing mobile applications",
+                "Coordinating project timelines"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What does a Database Operations Specialist focus on?",
+            "options": [
+                "Monitoring database performance and security",
+                "Developing websites",
+                "Managing social media",
+                "Writing documentation"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What is the focus of a Programming Specialist?",
+            "options": [
+                "Writing and debugging code for applications",
+                "Managing customer support",
+                "Administering databases",
+                "Coordinating projects"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What characterizes a Technical Support Manager's role?",
+            "options": [
+                "Leading technical support teams and ensuring service quality",
+                "Developing software",
+                "Managing databases",
+                "Designing websites"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What primary function does a Service Desk Manager perform?",
+            "options": [
+                "Coordinating IT support operations",
+                "Developing software",
+                "Managing databases",
+                "Creating websites"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What is an IT Support Coordinator's main responsibility?",
+            "options": [
+                "Managing help desk operations and staff",
+                "Developing software",
+                "Administering databases",
+                "Creating networks"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What is a Technical Support Engineer's key function?",
+            "options": [
+                "Troubleshooting hardware and software issues",
+                "Developing applications",
+                "Managing databases",
+                "Creating networks"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What defines a Computer Support Analyst's role?",
+            "options": [
+                "Diagnosing and resolving technical issues",
+                "Programming software",
+                "Administering databases",
+                "Designing graphics"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What characterizes a Systems Support Specialist's work?",
+            "options": [
+                "Maintaining and troubleshooting computer systems",
+                "Programming software",
+                "Managing databases",
+                "Designing networks"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What is a Project Coordinator's main responsibility?",
+            "options": [
+                "Organizing project activities and resources",
+                "Developing applications",
+                "Managing databases",
+                "Creating websites"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What characterizes a Technology Systems Specialist's work?",
+            "options": [
+                "Assessing organizational needs and proposing solutions",
+                "Programming software",
+                "Administering databases",
+                "Designing networks"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What skills are most important for a Database Administrator?",
+            "options": [
+                "Database management and security expertise",
+                "Programming languages",
+                "Customer service",
+                "Project management"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What knowledge is essential for a Help Desk Supervisor?",
+            "options": [
+                "Technical support processes and team management",
+                "Programming languages",
+                "Database administration",
+                "Network design"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What experience benefits a Project Manager most?",
+            "options": [
+                "Project coordination and team leadership",
+                "Programming skills",
+                "Database administration",
+                "Network management"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What training is important for a Software Developer?",
+            "options": [
+                "Programming languages and software development methodologies",
+                "Database administration",
+                "Customer service",
+                "Project management"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What expertise should a Help Desk Supervisor have?",
+            "options": [
+                "Technical support systems and team management",
+                "Programming skills",
+                "Database design",
+                "Network administration"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What skills define a successful Software Developer?",
+            "options": [
+                "Programming proficiency and problem-solving abilities",
+                "Database management",
+                "Customer service",
+                "Project coordination"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What is the main role of a Data Platform Manager?",
+            "options": [
+                "Ensuring database availability and optimization",
+                "Creating mobile apps",
+                "Managing customer service",
+                "Designing graphics"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What distinguishes a Software Engineer's role?",
+            "options": [
+                "Designing and developing complex software systems",
+                "Managing databases",
+                "Providing technical support",
+                "Coordinating projects"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What defines a Technical Operations Supervisor's role?",
+            "options": [
+                "Overseeing technical support operations",
+                "Programming applications",
+                "Managing databases",
+                "Designing graphics"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What defines a Project Lead's role?",
+            "options": [
+                "Directing project implementation and team performance",
+                "Programming software",
+                "Administering databases",
+                "Designing graphics"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What is a Program Manager's key function?",
+            "options": [
+                "Overseeing multiple projects and strategic alignment",
+                "Developing applications",
+                "Managing databases",
+                "Creating networks"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What defines a Business Systems Consultant's role?",
+            "options": [
+                "Analyzing processes and recommending solutions",
+                "Programming software",
+                "Managing databases",
+                "Designing graphics"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What background is valuable for a Systems Analyst?",
+            "options": [
+                "Business analysis and technical solution design",
+                "Software development",
+                "Database management",
+                "Help desk support"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What certifications are useful for a Database Administrator?",
+            "options": [
+                "Database-specific certifications and security credentials",
+                "Programming certificates",
+                "Project management certifications",
+                "Network certifications"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What knowledge is essential for a Project Manager?",
+            "options": [
+                "Project methodology and resource management",
+                "Programming languages",
+                "Database administration",
+                "Network design"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What tools should a Database Administrator master?",
+            "options": [
+                "Database management systems and monitoring tools",
+                "Programming IDEs",
+                "Project tracking software",
+                "Network monitoring tools"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        }
+    ]
+}
         let currentQuestion = 0;
         let score = 0;
         let currentDifficulty = null;
