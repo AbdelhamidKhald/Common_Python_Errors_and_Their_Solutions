@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced IT Career Quiz | By Abdelhamid Khaled</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --success-color: #2ecc71;
+            --warning-color: #e74c3c;
+            --background-color: #f0f2f5;
+            --card-background: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Enable text selection for questions and options */
+        .question, .option, .final-score {
+            user-select: text;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--primary-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: "IT Career Quiz © 2024";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 3em;
+            color: rgba(0,0,0,0.1);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--card-background);
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .quiz-header h1 {
+            color: var(--primary-color);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .author-credits {
+            margin-top: 10px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .difficulty-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .difficulty-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            color: white;
+        }
+
+        .difficulty-btn.beginner {
+            background-color: #27ae60;
+        }
+
+        .difficulty-btn.intermediate {
+            background-color: #f39c12;
+        }
+
+        .difficulty-btn.expert {
+            background-color: #c0392b;
+        }
+
+        .question-card {
+            background: var(--card-background);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .question {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .options {
+            display: grid;
+            gap: 12px;
+        }
+
+        .option {
+            padding: 15px;
+            background-color: var(--background-color);
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+        }
+
+        .option:hover {
+            background-color: #e8f4fd;
+            border-color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            background-color: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+
+        .progress-container {
+            margin: 20px 0;
+            padding: 10px;
+            background: var(--card-background);
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 15px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background-color: var(--secondary-color);
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: var(--secondary-color);
+            color: white;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+            font-weight: bold;
+            min-width: 120px;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .score-display {
+            text-align: center;
+            font-size: 1.2rem;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: var(--card-background);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .final-score {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .final-score h2 {
+            color: var(--primary-color);
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .final-score p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+
+            .quiz-header h1 {
+                font-size: 2em;
+            }
+
+            .question {
+                font-size: 1.1rem;
+            }
+
+            .difficulty-selector {
+                flex-direction: column;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        @media print {
+            body {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="quiz-container">
+        <div class="quiz-header">
+            <h1>Advanced IT Career Quiz</h1>
+            <p>Test your knowledge across various IT domains</p>
+            <div class="author-credits">Created by Abdelhamid Khaled</div>
+            <div class="difficulty-selector">
+                <button class="difficulty-btn beginner" onclick="setDifficulty('beginner')">Beginner</button>
+                <button class="difficulty-btn intermediate" onclick="setDifficulty('intermediate')">Intermediate</button>
+                <button class="difficulty-btn expert" onclick="setDifficulty('expert')">Expert</button>
+            </div>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+        </div>
+
+        <div id="question-container"></div>
+
+        <div class="controls">
+            <button class="btn" id="prev-btn" onclick="previousQuestion()">Previous</button>
+            <button class="btn" id="next-btn" onclick="nextQuestion()">Next</button>
+        </div>
+
+        <div class="score-display" id="score-display"></div>
+    </div>
+
+    <script>
+        // Utility function to shuffle an array
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Quiz Questions Array
+        const questions = [
+            // Beginner Level Questions (10)
+            {
+                question: "What is the main responsibility of a Software Developer?",
+                options: [
+                    "Writing and maintaining computer programs",
+                    "Managing databases only",
+                    "Fixing computer hardware",
+                    "Managing network security"
+                ],
+                correctAnswer: "Writing and maintaining computer programs",
+                difficulty: "beginner"
+            },
+            {
+                question: "What does IT stand for in the context of career paths?",
+                options: [
+                    "Information Technology",
+                    "Internet Things",
+                    "Internal Tools",
+                    "Interface Testing"
+                ],
+                correctAnswer: "Information Technology",
+                difficulty: "beginner"
+            },
+            {
+                question: "What is the primary role of a Help Desk Technician?",
+                options: [
+                    "Providing technical support to users",
+                    "Developing software applications",
+                    "Managing databases",
+                    "Designing networks"
+                ],
+                correctAnswer: "Providing technical support to users",
+                difficulty: "beginner"
+            },
+            {
+                question: "What is the main tool used by programmers to write code?",
+                options: [
+                    "Code Editor",
+                    "Web Browser",
+                    "Spreadsheet Software",
+                    "Email Client"
+                ],
+                correctAnswer: "Code Editor",
+                difficulty: "beginner"
+            },
+            {
+                question: "What is the primary purpose of a computer network?",
+                options: [
+                    "Sharing resources between computers",
+                    "Playing video games",
+                    "Storing photos",
+                    "Creating documents"
+                ],
+                correctAnswer: "Sharing resources between computers",
+                difficulty: "beginner"
+            },
+            {
+                question: "What is the main role of a System Administrator?",
+                options: [
+                    "Managing and maintaining computer systems",
+                    "Creating websites",
+                    "Writing software",
+                    "Designing graphics"
+                ],
+                correctAnswer: "Managing and maintaining computer systems",
+                difficulty: "beginner"
+            },
+            {
+                question: "What is the purpose of antivirus software?",
+                options: [
+                    "Protecting computers from malicious software",
+                    "Making computers faster",
+                    "Creating backups",
+                    "Managing emails"
+                ],
+                correctAnswer: "Protecting computers from malicious software",
+                difficulty: "beginner"
+            },
+            {
+                question: "What is a database used for?",
+                options: [
+                    "Storing and organizing data",
+                    "Playing music",
+                    "Writing documents",
+                    "Drawing pictures"
+                ],
+                correctAnswer: "Storing and organizing data",
+                difficulty: "beginner"
+            },
+            {
+                question: "What is the main responsibility of a Web Developer?",
+                options: [
+                    "Creating and maintaining websites",
+                    "Repairing computers",
+                    "Managing networks",
+                    "Writing business reports"
+                ],
+                correctAnswer: "Creating and maintaining websites",
+                difficulty: "beginner"
+            },
+            {
+                question: "What is the purpose of a backup?",
+                options: [
+                    "Saving copies of important data",
+                    "Speeding up the computer",
+                    "Improving internet connection",
+                    "Installing new software"
+                ],
+                correctAnswer: "Saving copies of important data",
+                difficulty: "beginner"
+            },
+
+            // Intermediate Level Questions (10)
+            {
+                question: "What is the role of a Network Administrator?",
+                options: [
+                    "Managing and securing computer networks",
+                    "Creating mobile applications",
+                    "Writing technical documentation",
+                    "Designing user interfaces"
+                ],
+                correctAnswer: "Managing and securing computer networks",
+                difficulty: "intermediate"
+            },
+            {
+                question: "What does a Business Analyst in IT do?",
+                options: [
+                    "Analyzes business needs and recommends technical solutions",
+                    "Repairs computer hardware",
+                    "Develops mobile applications",
+                    "Manages social media accounts"
+                ],
+                correctAnswer: "Analyzes business needs and recommends technical solutions",
+                difficulty: "intermediate"
+            },
+            {
+                question: "What is the primary role of a Database Administrator?",
+                options: [
+                    "Managing and maintaining databases",
+                    "Creating websites",
+                    "Writing software applications",
+                    "Designing network infrastructure"
+                ],
+                correctAnswer: "Managing and maintaining databases",
+                difficulty: "intermediate"
+            },
+            {
+                question: "What does a Quality Assurance (QA) Engineer do?",
+                options: [
+                    "Tests software for bugs and quality issues",
+                    "Develops new programming languages",
+                    "Manages client relationships",
+                    "Designs hardware components"
+                ],
+                correctAnswer: "Tests software for bugs and quality issues",
+                difficulty: "intermediate"
+            },
+            {
+                question: "What is the main responsibility of a DevOps Engineer?",
+                options: [
+                    "Combining development and operations practices",
+                    "Creating marketing strategies",
+                    "Managing human resources",
+                    "Designing user interfaces"
+                ],
+                correctAnswer: "Combining development and operations practices",
+                difficulty: "intermediate"
+            },
+            {
+                question: "What does a Cloud Administrator manage?",
+                options: [
+                    "Cloud-based services and infrastructure",
+                    "Office equipment",
+                    "Customer complaints",
+                    "Social media accounts"
+                ],
+                correctAnswer: "Cloud-based services and infrastructure",
+                difficulty: "intermediate"
+            },
+            {
+                question: "What is the role of a Systems Integration Engineer?",
+                options: [
+                    "Connecting different systems to work together",
+                    "Writing user manuals",
+                    "Managing social media",
+                    "Repairing printers"
+                ],
+                correctAnswer: "Connecting different systems to work together",
+                difficulty: "intermediate"
+            },
+            {
+                question: "What does an IT Project Manager do?",
+                options: [
+                    "Manages IT project timelines and resources",
+                    "Repairs hardware",
+                    "Writes code",
+                    "Designs logos"
+                ],
+                correctAnswer: "Manages IT project timelines and resources",
+                difficulty: "intermediate"
+            },
+            {
+                question: "What is the main role of a Security Analyst?",
+                options: [
+                    "Monitoring and protecting against security threats",
+                    "Developing mobile apps",
+                    "Managing databases",
+                    "Creating websites"
+                ],
+                correctAnswer: "Monitoring and protecting against security threats",
+                difficulty: "intermediate"
+            },
+            {
+                question: "What does a Data Scientist do in IT?",
+                options: [
+                    "Analyzes complex data sets to find patterns",
+                    "Repairs computer networks",
+                    "Manages social media",
+                    "Writes technical documents"
+                ],
+                correctAnswer: "Analyzes complex data sets to find patterns",
+                difficulty: "intermediate"
+            },
+
+            // Expert Level Questions (20)
+            {
+                question: "What is Kubernetes used for in IT infrastructure?",
+                options: [
+                    "Container orchestration and management",
+                    "Database management",
+                    "Network security",
+                    "Web development"
+                ],
+                correctAnswer: "Container orchestration and management",
+                difficulty: "expert"
+            },
+            {
+                question: "What is the principle behind blockchain technology?",
+                options: [
+                    "Distributed ledger with cryptographic security",
+                    "Centralized data storage",
+                    "Cloud computing",
+                    "Artificial intelligence"
+                ],
+                correctAnswer: "Distributed ledger with cryptographic security",
+                difficulty: "expert"
+            },
+            {
+                question: "What is quantum computing's main advantage?",
+                options: [
+                    "Solving complex problems exponentially faster",
+                    "Lower power consumption",
+                    "Cheaper hardware costs",
+                    "Simpler programming"
+                ],
+                correctAnswer: "Solving complex problems exponentially faster",
+                difficulty: "expert"
+            },
+            {
+                question: "What is the zero-trust security model?",
+                options: [
+                    "Never trust, always verify",
+                    "Trust all internal networks",
+                    "Verify once, trust always",
+                    "Trust but verify"
+                ],
+                correctAnswer: "Never trust, always verify",
+                difficulty: "expert"
+            },
+            {
+                question: "What is edge computing's primary benefit?",
+                options: [
+                    "Reduced latency and bandwidth usage",
+                    "Increased storage capacity",
+                    "Better user interfaces",
+                    "Improved database performance"
+                ],
+                correctAnswer: "Reduced latency and bandwidth usage",
+                difficulty: "expert"
+            },
+            {
+                question: "What is the main principle of DevSecOps?",
+                options: [
+                    "Integrating security practices throughout development",
+                    "Separate security from development",
+                    "Testing only after deployment",
+                    "Manual security checks"
+                ],
+                correctAnswer: "Integrating security practices throughout development",
+                difficulty: "expert"
+            },
+            {
+                question: "What is the purpose of infrastructure as code (IaC)?",
+                options: [
+                    "Automating infrastructure deployment and management",
+                    "Writing better software code",
+                    "Managing databases",
+                    "Creating user interfaces"
+                ],
+                correctAnswer: "Automating infrastructure deployment and management",
+                difficulty: "expert"
+            },
+            {
+                question: "What is the key concept of machine learning?",
+                options: [
+                    "Systems learning from data without explicit programming",
+                    "Manual data analysis",
+                    "Hardware optimization",
+                    "Network security"
+                ],
+                correctAnswer: "Systems learning from data without explicit programming",
+                difficulty: "expert"
+            },
+            {
+                question: "What is the main purpose of artificial neural networks?",
+                options: [
+                    "Mimicking human brain function for problem solving",
+                    "Storing data efficiently",
+                    "Managing networks",
+                    "Processing payments"
+                ],
+                correctAnswer: "Mimicking human brain function for problem solving",
+                difficulty: "expert"
+            },
+            {
+                question: "What is the primary goal of site reliability engineering (SRE)?",
+                options: [
+                    "Creating scalable and reliable software systems",
+                    "Website design",
+                    "Network maintenance",
+                    "Database optimization"
+                ],
+                correctAnswer: "Creating scalable and reliable software systems",
+                difficulty: "expert"
+            },
+            {
+                question: "What is the main principle of microservices architecture?",
+                options: [
+                    "Breaking applications into small, independent services",
+                    "Creating one large application",
+                    "Minimizing code reuse",
+                    "Avoiding cloud services"
+                ],
+                correctAnswer: "Breaking applications into small, independent services",
+                difficulty: "expert"
+            },
+            {
+                question: "What is the key benefit of serverless computing?",
+                options: [
+                    "Automatic scaling and reduced infrastructure management",
+                    "Having more servers",
+                    "Increased security",
+                    "Better user interfaces"
+                ],
+                correctAnswer: "Automatic scaling and reduced infrastructure management",
+                difficulty: "expert"
+            },
+            {
+                question: "What is the main purpose of data lakes?",
+                options: [
+                    "Storing vast amounts of raw data in native format",
+                    "Replacing databases",
+                    "Improving network speed",
+                    "Managing emails"
+                ],
+                correctAnswer: "Storing vast amounts of raw data in native format",
+                difficulty: "expert"
+            },
+            {
+                question: "What is the principle of chaos engineering?",
+                options: [
+                    "Testing system resilience by introducing failures",
+                    "Creating system chaos",
+                    "Random programming",
+                    "Unstructured testing"
+                ],
+                correctAnswer: "Testing system resilience by introducing failures",
+                difficulty: "expert"
+            },
+            {
+                question: "What is the main goal of GitOps?",
+                options: [
+                    "Managing infrastructure and applications through Git",
+                    "Version control only",
+                    "Code testing",
+                    "User interface design"
+                ],
+                correctAnswer: "Managing infrastructure and applications through Git",
+                difficulty: "expert"
+            },
+            {
+                question: "What is the primary purpose of service mesh?",
+                options: [
+                    "Managing service-to-service communication in microservices",
+                    "Internet connectivity",
+                    "Database management",
+                    "User authentication"
+                ],
+                correctAnswer: "Managing service-to-service communication in microservices",
+                difficulty: "expert"
+            },
+            {
+                question: "What is the main concept of event-driven architecture?",
+                options: [
+                    "Systems responding to events as they occur",
+                    "Sequential processing",
+                    "Batch processing",
+                    "Manual intervention"
+                ],
+                correctAnswer: "Systems responding to events as they occur",
+                difficulty: "expert"
+            },
+            {
+                question: "What is the key principle of continuous deployment?",
+                options: [
+                    "Automatically deploying all changes to production",
+                    "Manual deployment",
+                    "Weekly releases",
+                    "Monthly updates"
+                ],
+                correctAnswer: "Automatically deploying all changes to production",
+                difficulty: "expert"
+            },
+            {
+                question: "What is the main purpose of API gateways?",
+                options: [
+                    "Managing and securing API traffic",
+                    "Creating APIs",
+                    "Testing software",
+                    "Storing data"
+                ],
+                correctAnswer: "Managing and securing API traffic",
+                difficulty: "expert"
+            },
+            {
+                question: "What is the primary goal of DataOps?",
+                options: [
+                    "Improving quality and reducing cycle time in data analytics",
+                    "Data storage only",
+                    "Manual data processing",
+                    "Hardware management"
+                ],
+                correctAnswer: "Improving quality and reducing cycle time in data analytics",
+                difficulty: "expert"
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let currentDifficulty = null;
+        let filteredQuestions = [];
+        let userAnswers = [];
+
+        function setDifficulty(difficulty) {
+            currentDifficulty = difficulty;
+            filteredQuestions = questions.filter(q => q.difficulty === difficulty);
+            // Shuffle questions to ensure randomness
+            shuffle(filteredQuestions);
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = new Array(filteredQuestions.length).fill(null);
+            showQuestion();
+            updateProgress();
+            document.getElementById('prev-btn').disabled = true;
+            document.getElementById('next-btn').disabled = true;
+            document.getElementById('score-display').innerHTML = '';
+        }
+
+        function showQuestion() {
+            if (!currentDifficulty) return;
+
+            const questionData = filteredQuestions[currentQuestion];
+            const container = document.getElementById('question-container');
+
+            // Shuffle options
+            const shuffledOptions = shuffle([...questionData.options]);
+            // Determine the new index of the correct answer
+            const correctIndex = shuffledOptions.indexOf(questionData.correctAnswer);
+
+            let html = `
+                <div class="question-card">
+                    <div class="question">Question ${currentQuestion + 1} of ${filteredQuestions.length}</div>
+                    <div class="question">${questionData.question}</div>
+                    <div class="options">
+            `;
+
+            shuffledOptions.forEach((option, index) => {
+                const selected = userAnswers[currentQuestion] === index ? 'selected' : '';
+                html += `<div class="option ${selected}" onclick="selectOption(${index})">${option}</div>`;
+            });
+
+            html += '</div></div>';
+            container.innerHTML = html;
+
+            // Update the correct answer index for this question
+            filteredQuestions[currentQuestion].correct = correctIndex;
+
+            updateNavButtons();
+        }
+
+        function selectOption(index) {
+            userAnswers[currentQuestion] = index;
+            showQuestion();
+            updateProgress();
+            document.getElementById('next-btn').disabled = false;
+            if (currentQuestion > 0) {
+                document.getElementById('prev-btn').disabled = false;
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+                updateProgress();
+                document.getElementById('next-btn').disabled = userAnswers[currentQuestion] === null;
+                if (currentQuestion === 0) {
+                    document.getElementById('prev-btn').disabled = true;
+                }
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < filteredQuestions.length - 1) {
+                currentQuestion++;
+                showQuestion();
+                updateProgress();
+                document.getElementById('next-btn').disabled = userAnswers[currentQuestion] === null;
+                if (currentQuestion > 0) {
+                    document.getElementById('prev-btn').disabled = false;
+                }
+            } else {
+                showResults();
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / filteredQuestions.length) * 100;
+            document.getElementById('progress').style.width = `${progress}%`;
+        }
+
+        function updateNavButtons() {
+            document.getElementById('prev-btn').disabled = currentQuestion === 0;
+            document.getElementById('next-btn').textContent = 
+                currentQuestion === filteredQuestions.length - 1 ? 'Finish' : 'Next';
+            document.getElementById('next-btn').disabled = userAnswers[currentQuestion] === null;
+        }
+
+        function showResults() {
+            score = userAnswers.reduce((acc, answer, index) => {
+                return acc + (answer === filteredQuestions[index].correct ? 1 : 0);
+            }, 0);
+
+            const percentage = (score / filteredQuestions.length) * 100;
+            const container = document.getElementById('question-container');
+
+            let resultMessage = '';
+            if (percentage >= 90) resultMessage = 'Outstanding! You are an expert!';
+            else if (percentage >= 70) resultMessage = 'Great job! You have solid knowledge!';
+            else if (percentage >= 50) resultMessage = 'Good effort! Keep learning!';
+            else resultMessage = 'Keep practicing! You will improve!';
+
+            container.innerHTML = `
+                <div class="question-card final-score">
+                    <h2>Quiz Complete!</h2>
+                    <p>Your Score: ${score} out of ${filteredQuestions.length}</p>
+                    <p>Percentage: ${percentage.toFixed(2)}%</p>
+                    <p>${resultMessage}</p>
+                    <button class="btn" onclick="restartQuiz()">Try Again</button>
+                </div>
+            `;
+
+            document.getElementById('prev-btn').style.display = 'none';
+            document.getElementById('next-btn').style.display = 'none';
+        }
+
+        function restartQuiz() {
+            document.getElementById('prev-btn').style.display = 'inline-block';
+            document.getElementById('next-btn').style.display = 'inline-block';
+            document.getElementById('question-container').innerHTML = '';
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = new Array(filteredQuestions.length).fill(null);
+            showQuestion();
+            updateProgress();
+            document.getElementById('prev-btn').disabled = true;
+            document.getElementById('next-btn').disabled = true;
+            document.getElementById('score-display').innerHTML = '';
+        }
+
+        // Initialize
+        window.onload = function() {
+            document.getElementById('question-container').innerHTML = `
+                <div class="question-card">
+                    <h2>Welcome to the IT Career Quiz!</h2>
+                    <p>Please select a difficulty level to begin.</p>
+                </div>
+            `;
+        };
+    </script>
+</body>
+</html>
