@@ -230,6 +230,29 @@
             margin: 10px 0;
         }
 
+        .feedback {
+            margin-top: 30px;
+            text-align: left;
+            font-size: 1em;
+            background: var(--card-background);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .feedback h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .feedback .wrong-answer {
+            color: var(--warning-color);
+        }
+
+        .feedback .correct-answer {
+            color: var(--success-color);
+        }
+
         @media (max-width: 600px) {
             .container {
                 padding: 10px;
@@ -284,7 +307,7 @@
     <div class="container no-screenshot" id="quiz-container">
         <div class="quiz-header">
             <h1>Advanced IT Career Quiz</h1>
-            <p>صلو علي النبي عليه افضل الصلاه والسلام</p>
+            <p>حكمه اليوم وراء كل طالب ناجح نت مفصول</p>
             <div class="author-credits">Created by Abdelhamid Khaled</div>
             <div class="difficulty-selector">
                 <button class="difficulty-btn beginner" onclick="setDifficulty('beginner')">Beginner</button>
@@ -330,7 +353,7 @@
                     "Fixing computer hardware",
                     "Managing network security"
                 ],
-                correctAnswer: "Writing and maintaining computer programs",
+                correctAnswer: 0,
                 difficulty: "beginner"
             },
             {
@@ -341,7 +364,7 @@
                     "Internal Tools",
                     "Interface Testing"
                 ],
-                correctAnswer: "Information Technology",
+                correctAnswer: 0,
                 difficulty: "beginner"
             },
             {
@@ -352,7 +375,7 @@
                     "Managing databases",
                     "Designing networks"
                 ],
-                correctAnswer: "Providing technical support to users",
+                correctAnswer: 0,
                 difficulty: "beginner"
             },
             {
@@ -363,7 +386,7 @@
                     "Spreadsheet Software",
                     "Email Client"
                 ],
-                correctAnswer: "Code Editor",
+                correctAnswer: 0,
                 difficulty: "beginner"
             },
             {
@@ -374,7 +397,7 @@
                     "Storing photos",
                     "Creating documents"
                 ],
-                correctAnswer: "Sharing resources between computers",
+                correctAnswer: 0,
                 difficulty: "beginner"
             },
             {
@@ -385,7 +408,7 @@
                     "Writing software",
                     "Designing graphics"
                 ],
-                correctAnswer: "Managing and maintaining computer systems",
+                correctAnswer: 0,
                 difficulty: "beginner"
             },
             {
@@ -396,7 +419,7 @@
                     "Creating backups",
                     "Managing emails"
                 ],
-                correctAnswer: "Protecting computers from malicious software",
+                correctAnswer: 0,
                 difficulty: "beginner"
             },
             {
@@ -407,7 +430,7 @@
                     "Writing documents",
                     "Drawing pictures"
                 ],
-                correctAnswer: "Storing and organizing data",
+                correctAnswer: 0,
                 difficulty: "beginner"
             },
             {
@@ -418,7 +441,7 @@
                     "Managing networks",
                     "Writing business reports"
                 ],
-                correctAnswer: "Creating and maintaining websites",
+                correctAnswer: 0,
                 difficulty: "beginner"
             },
             {
@@ -429,7 +452,7 @@
                     "Improving internet connection",
                     "Installing new software"
                 ],
-                correctAnswer: "Saving copies of important data",
+                correctAnswer: 0,
                 difficulty: "beginner"
             },
 
@@ -442,7 +465,7 @@
                     "Writing technical documentation",
                     "Designing user interfaces"
                 ],
-                correctAnswer: "Managing and securing computer networks",
+                correctAnswer: 0,
                 difficulty: "intermediate"
             },
             {
@@ -453,7 +476,7 @@
                     "Develops mobile applications",
                     "Manages social media accounts"
                 ],
-                correctAnswer: "Analyzes business needs and recommends technical solutions",
+                correctAnswer: 0,
                 difficulty: "intermediate"
             },
             {
@@ -464,7 +487,7 @@
                     "Writing software applications",
                     "Designing network infrastructure"
                 ],
-                correctAnswer: "Managing and maintaining databases",
+                correctAnswer: 0,
                 difficulty: "intermediate"
             },
             {
@@ -475,7 +498,7 @@
                     "Manages client relationships",
                     "Designs hardware components"
                 ],
-                correctAnswer: "Tests software for bugs and quality issues",
+                correctAnswer: 0,
                 difficulty: "intermediate"
             },
             {
@@ -486,7 +509,7 @@
                     "Managing human resources",
                     "Designing user interfaces"
                 ],
-                correctAnswer: "Combining development and operations practices",
+                correctAnswer: 0,
                 difficulty: "intermediate"
             },
             {
@@ -497,7 +520,7 @@
                     "Customer complaints",
                     "Social media accounts"
                 ],
-                correctAnswer: "Cloud-based services and infrastructure",
+                correctAnswer: 0,
                 difficulty: "intermediate"
             },
             {
@@ -508,7 +531,7 @@
                     "Managing social media",
                     "Repairing printers"
                 ],
-                correctAnswer: "Connecting different systems to work together",
+                correctAnswer: 0,
                 difficulty: "intermediate"
             },
             {
@@ -519,7 +542,7 @@
                     "Writes code",
                     "Designs logos"
                 ],
-                correctAnswer: "Manages IT project timelines and resources",
+                correctAnswer: 0,
                 difficulty: "intermediate"
             },
             {
@@ -530,7 +553,7 @@
                     "Managing databases",
                     "Creating websites"
                 ],
-                correctAnswer: "Monitoring and protecting against security threats",
+                correctAnswer: 0,
                 difficulty: "intermediate"
             },
             {
@@ -541,7 +564,7 @@
                     "Manages social media",
                     "Writes technical documents"
                 ],
-                correctAnswer: "Analyzes complex data sets to find patterns",
+                correctAnswer: 0,
                 difficulty: "intermediate"
             },
 
@@ -554,7 +577,7 @@
                     "Network security",
                     "Web development"
                 ],
-                correctAnswer: "Container orchestration and management",
+                correctAnswer: 0,
                 difficulty: "expert"
             },
             {
@@ -565,7 +588,7 @@
                     "Cloud computing",
                     "Artificial intelligence"
                 ],
-                correctAnswer: "Distributed ledger with cryptographic security",
+                correctAnswer: 0,
                 difficulty: "expert"
             },
             {
@@ -576,7 +599,7 @@
                     "Cheaper hardware costs",
                     "Simpler programming"
                 ],
-                correctAnswer: "Solving complex problems exponentially faster",
+                correctAnswer: 0,
                 difficulty: "expert"
             },
             {
@@ -587,7 +610,7 @@
                     "Verify once, trust always",
                     "Trust but verify"
                 ],
-                correctAnswer: "Never trust, always verify",
+                correctAnswer: 0,
                 difficulty: "expert"
             },
             {
@@ -598,18 +621,18 @@
                     "Better user interfaces",
                     "Improved database performance"
                 ],
-                correctAnswer: "Reduced latency and bandwidth usage",
+                correctAnswer: 0,
                 difficulty: "expert"
             },
             {
                 question: "What is the main principle of DevSecOps?",
-               	options: [
+                options: [
                     "Integrating security practices throughout development",
                     "Separate security from development",
                     "Testing only after deployment",
                     "Manual security checks"
                 ],
-                correctAnswer: "Integrating security practices throughout development",
+                correctAnswer: 0,
                 difficulty: "expert"
             },
             {
@@ -620,7 +643,7 @@
                     "Managing databases",
                     "Creating user interfaces"
                 ],
-                correctAnswer: "Automating infrastructure deployment and management",
+                correctAnswer: 0,
                 difficulty: "expert"
             },
             {
@@ -631,7 +654,7 @@
                     "Hardware optimization",
                     "Network security"
                 ],
-                correctAnswer: "Systems learning from data without explicit programming",
+                correctAnswer: 0,
                 difficulty: "expert"
             },
             {
@@ -642,7 +665,7 @@
                     "Managing networks",
                     "Processing payments"
                 ],
-                correctAnswer: "Mimicking human brain function for problem solving",
+                correctAnswer: 0,
                 difficulty: "expert"
             },
             {
@@ -653,7 +676,7 @@
                     "Network maintenance",
                     "Database optimization"
                 ],
-                correctAnswer: "Creating scalable and reliable software systems",
+                correctAnswer: 0,
                 difficulty: "expert"
             },
             {
@@ -664,7 +687,7 @@
                     "Minimizing code reuse",
                     "Avoiding cloud services"
                 ],
-                correctAnswer: "Breaking applications into small, independent services",
+                correctAnswer: 0,
                 difficulty: "expert"
             },
             {
@@ -675,7 +698,7 @@
                     "Increased security",
                     "Better user interfaces"
                 ],
-                correctAnswer: "Automatic scaling and reduced infrastructure management",
+                correctAnswer: 0,
                 difficulty: "expert"
             },
             {
@@ -686,7 +709,7 @@
                     "Improving network speed",
                     "Managing emails"
                 ],
-                correctAnswer: "Storing vast amounts of raw data in native format",
+                correctAnswer: 0,
                 difficulty: "expert"
             },
             {
@@ -697,7 +720,7 @@
                     "Random programming",
                     "Unstructured testing"
                 ],
-                correctAnswer: "Testing system resilience by introducing failures",
+                correctAnswer: 0,
                 difficulty: "expert"
             },
             {
@@ -708,7 +731,7 @@
                     "Code testing",
                     "User interface design"
                 ],
-                correctAnswer: "Managing infrastructure and applications through Git",
+                correctAnswer: 0,
                 difficulty: "expert"
             },
             {
@@ -719,7 +742,7 @@
                     "Database management",
                     "User authentication"
                 ],
-                correctAnswer: "Managing service-to-service communication in microservices",
+                correctAnswer: 0,
                 difficulty: "expert"
             },
             {
@@ -730,7 +753,7 @@
                     "Batch processing",
                     "Manual intervention"
                 ],
-                correctAnswer: "Systems responding to events as they occur",
+                correctAnswer: 0,
                 difficulty: "expert"
             },
             {
@@ -741,7 +764,7 @@
                     "Weekly releases",
                     "Monthly updates"
                 ],
-                correctAnswer: "Automatically deploying all changes to production",
+                correctAnswer: 0,
                 difficulty: "expert"
             },
             {
@@ -752,7 +775,7 @@
                     "Testing software",
                     "Storing data"
                 ],
-                correctAnswer: "Managing and securing API traffic",
+                correctAnswer: 0,
                 difficulty: "expert"
             },
             {
@@ -763,7 +786,7 @@
                     "Manual data processing",
                     "Hardware management"
                 ],
-                correctAnswer: "Improving quality and reducing cycle time in data analytics",
+                correctAnswer: 0,
                 difficulty: "expert"
             }
         ];
@@ -864,7 +887,7 @@
 
         function showResults() {
             score = userAnswers.reduce((acc, answer, index) => {
-                return acc + (answer === filteredQuestions[index].correct ? 1 : 0);
+                return acc + (answer === filteredQuestions[index].correctAnswer ? 1 : 0);
             }, 0);
 
             const percentage = (score / filteredQuestions.length) * 100;
@@ -876,6 +899,19 @@
             else if (percentage >= 50) resultMessage = 'Good effort! Keep learning!';
             else resultMessage = 'Keep practicing! You will improve!';
 
+            let feedback = '';
+            filteredQuestions.forEach((question, index) => {
+                if (userAnswers[index] !== question.correctAnswer) {
+                    feedback += `
+                        <div class="feedback">
+                            <h3>Question: ${question.question}</h3>
+                            <p class="wrong-answer">Your Answer: ${question.options[userAnswers[index]]}</p>
+                            <p class="correct-answer">Correct Answer: ${question.options[question.correctAnswer]}</p>
+                        </div>
+                    `;
+                }
+            });
+
             container.innerHTML = `
                 <div class="question-card final-score">
                     <h2>Quiz Complete!</h2>
@@ -884,6 +920,7 @@
                     <p>${resultMessage}</p>
                     <button class="btn" onclick="restartQuiz()">Try Again</button>
                 </div>
+                ${feedback}
             `;
 
             document.getElementById('prev-btn').style.display = 'none';
