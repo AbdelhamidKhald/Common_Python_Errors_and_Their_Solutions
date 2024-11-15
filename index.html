@@ -28,19 +28,6 @@
             position: relative;
         }
 
-        body::before {
-            content: "IT Career Quiz © 2024";
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-45deg);
-            font-size: 3em;
-            color: rgba(0,0,0,0.1);
-            white-space: nowrap;
-            pointer-events: none;
-            z-index: 1;
-        }
-
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -979,26 +966,6 @@
             window.onbeforeunload = function(e) {
                 e.preventDefault();
                 e.returnValue = '';
-            };
-
-            function addWatermark() {
-                const watermark = document.createElement('div');
-                watermark.style.cssText = `
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    pointer-events: none;
-                    z-index: 10000;
-                    background: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Ctext x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='rgba(0,0,0,0.05)' font-size='24' transform='rotate(-45 100 100)'%3EConfidential%3C/text%3E%3C/svg%3E") repeat;
-                    opacity: 0.1;
-                `;
-                document.body.appendChild(watermark);
-            }
-
-            window.onload = function() {
-                addWatermark();
             };
         })();
 
