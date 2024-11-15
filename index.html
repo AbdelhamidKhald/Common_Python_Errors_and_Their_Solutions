@@ -333,13 +333,21 @@
     </div>
 
     <script>
-        // Utility function to shuffle an array
+        // Utility functions
         function shuffle(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [array[i], array[j]] = [array[j], array[i]];
             }
             return array;
+        }
+
+        function shuffleOptions(questions) {
+            questions.forEach(question => {
+                const correctOption = question.options[question.correctAnswer];
+                question.options = shuffle(question.options);
+                question.correctAnswer = question.options.indexOf(correctOption);
+            });
         }
 
         // Quiz Questions Array
@@ -801,6 +809,7 @@
             currentDifficulty = difficulty;
             filteredQuestions = questions.filter(q => q.difficulty === difficulty);
             shuffle(filteredQuestions);
+            shuffleOptions(filteredQuestions);
             currentQuestion = 0;
             score = 0;
             userAnswers = new Array(filteredQuestions.length).fill(null);
@@ -1003,6 +1012,7 @@
             };
         })();
 
+        // Prevent screenshot
         (function() {
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'PrintScreen') {
