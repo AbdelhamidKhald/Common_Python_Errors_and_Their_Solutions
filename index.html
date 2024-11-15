@@ -284,7 +284,7 @@
     <div class="container no-screenshot" id="quiz-container">
         <div class="quiz-header">
             <h1>Advanced IT Career Quiz</h1>
-            <p>صلو علي النبي عليه افضل الصلاه والسلام </p>
+            <p>صلو علي النبي عليه افضل الصلاه والسلام</p>
             <div class="author-credits">Created by Abdelhamid Khaled</div>
             <div class="difficulty-selector">
                 <button class="difficulty-btn beginner" onclick="setDifficulty('beginner')">Beginner</button>
@@ -603,7 +603,7 @@
             },
             {
                 question: "What is the main principle of DevSecOps?",
-                options: [
+               	options: [
                     "Integrating security practices throughout development",
                     "Separate security from development",
                     "Testing only after deployment",
@@ -794,9 +794,6 @@
             const questionData = filteredQuestions[currentQuestion];
             const container = document.getElementById('question-container');
 
-            const shuffledOptions = shuffle([...questionData.options]);
-            const correctIndex = shuffledOptions.indexOf(questionData.correctAnswer);
-
             let html = `
                 <div class="question-card">
                     <div class="question">Question ${currentQuestion + 1} of ${filteredQuestions.length}</div>
@@ -804,7 +801,7 @@
                     <div class="options">
             `;
 
-            shuffledOptions.forEach((option, index) => {
+            questionData.options.forEach((option, index) => {
                 const selected = userAnswers[currentQuestion] === index ? 'selected' : '';
                 html += `<div class="option ${selected}" onclick="selectOption(${index})">${option}</div>`;
             });
@@ -812,15 +809,15 @@
             html += '</div></div>';
             container.innerHTML = html;
 
-            filteredQuestions[currentQuestion].correct = correctIndex;
-
             updateNavButtons();
         }
 
         function selectOption(index) {
             userAnswers[currentQuestion] = index;
-            showQuestion();
-            updateProgress();
+            const options = document.querySelectorAll('.option');
+            options.forEach((option, idx) => {
+                option.classList.toggle('selected', idx === index);
+            });
             document.getElementById('next-btn').disabled = false;
             if (currentQuestion > 0) {
                 document.getElementById('prev-btn').disabled = false;
@@ -945,7 +942,7 @@
                 if (!(heightThreshold && widthThreshold) && 
                     ((window.Firebug && window.Firebug.chrome && window.Firebug.chrome.isLoaded) || widthThreshold || heightThreshold)) {
                     if (!devtools.open || devtools.orientation !== orientation) {
-                        devtools.open = true;
+                		devtools.open = true;
                         devtools.orientation = orientation;
                         alert('Developer tools are detected and disabled');
                         window.location.reload();
