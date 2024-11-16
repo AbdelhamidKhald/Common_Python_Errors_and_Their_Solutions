@@ -350,47 +350,1034 @@
             });
         }
 
-        // Quiz Questions Array from JSON
-        const quizData = { "questions": [ 
-            { "question": "What is the primary responsibility of a Database Systems Manager?", "options": [ "Overseeing database operations and security", "Writing software applications", "Managing help desk tickets", "Designing websites" ], "correctAnswer": 0, "difficulty": "beginner" }, 
-            { "question": "What is a primary task of an Application Programmer?", "options": [ "Creating and maintaining computer applications", "Managing databases", "Providing customer support", "Designing networks" ], "correctAnswer": 0, "difficulty": "beginner" }, 
-            { "question": "What is the main duty of an IT Support Team Leader?", "options": [ "Managing support staff and issue resolution", "Programming applications", "Administering databases", "Designing networks" ], "correctAnswer": 0, "difficulty": "beginner" }, 
-            { "question": "What characterizes an IT Support Specialist's work?", "options": [ "Providing technical assistance and problem resolution", "Programming applications", "Managing databases", "Designing websites" ], "correctAnswer": 0, "difficulty": "beginner" }, 
-            { "question": "What is a Desktop Support Technician's primary duty?", "options": [ "Providing on-site and remote technical support", "Developing applications", "Managing databases", "Creating websites" ], "correctAnswer": 0, "difficulty": "beginner" }, 
-            { "question": "What tools does a Software Developer commonly use?", "options": [ "Programming IDEs and version control systems", "Database management tools", "Help desk software", "Project management tools" ], "correctAnswer": 0, "difficulty": "beginner" }, 
-            { "question": "What qualifications are needed for a Support Technician?", "options": [ "Technical troubleshooting skills and IT certifications", "Software development expertise", "Database management", "Project management" ], "correctAnswer": 0, "difficulty": "beginner" }, 
-            { "question": "What are the basic responsibilities of a Help Desk Technician?", "options": [ "Answering technical queries and resolving basic IT issues", "Managing databases", "Programming software", "Designing networks" ], "correctAnswer": 0, "difficulty": "beginner" }, 
-            { "question": "What skills are crucial for a Support Technician?", "options": [ "Technical troubleshooting and customer service", "Software development", "Database management", "Project coordination" ], "correctAnswer": 0, "difficulty": "beginner" }, 
-            { "question": "What is the basic function of a System Administrator?", "options": [ "Maintaining computer systems and networks", "Developing software", "Managing projects", "Creating websites" ], "correctAnswer": 0, "difficulty": "beginner" },
-            { "question": "What role does a Database Systems Engineer play?", "options": [ "Designing and implementing database architectures", "Managing customer support", "Developing mobile applications", "Coordinating project timelines" ], "correctAnswer": 0, "difficulty": "intermediate" }, 
-            { "question": "What does a Database Operations Specialist focus on?", "options": [ "Monitoring database performance and security", "Developing websites", "Managing social media", "Writing documentation" ], "correctAnswer": 0, "difficulty": "intermediate" }, 
-            { "question": "What is the focus of a Programming Specialist?", "options": [ "Writing and debugging code for applications", "Managing customer support", "Administering databases", "Coordinating projects" ], "correctAnswer": 0, "difficulty": "intermediate" }, 
-            { "question": "What characterizes a Technical Support Manager's role?", "options": [ "Leading technical support teams and ensuring service quality", "Developing software", "Managing databases", "Designing websites" ], "correctAnswer": 0, "difficulty": "intermediate" }, 
-            { "question": "What primary function does a Service Desk Manager perform?", "options": [ "Coordinating IT support operations", "Developing software", "Managing databases", "Creating websites" ], "correctAnswer": 0, "difficulty": "intermediate" }, 
-            { "question": "What is an IT Support Coordinator's main responsibility?", "options": [ "Managing help desk operations and staff", "Developing software", "Administering databases", "Creating networks" ], "correctAnswer": 0, "difficulty": "intermediate" }, 
-            { "question": "What is a Technical Support Engineer's key function?", "options": [ "Troubleshooting hardware and software issues", "Developing applications", "Managing databases", "Creating networks" ], "correctAnswer": 0, "difficulty": "intermediate" }, 
-            { "question": "What defines a Computer Support Analyst's role?", "options": [ "Diagnosing and resolving technical issues", "Programming software", "Administering databases", "Designing graphics" ], "correctAnswer": 0, "difficulty": "intermediate" }, 
-            { "question": "What characterizes a Systems Support Specialist's work?", "options": [ "Maintaining and troubleshooting computer systems", "Programming software", "Managing databases", "Designing networks" ], "correctAnswer": 0, "difficulty": "intermediate" }, 
-            { "question": "What is a Project Coordinator's main responsibility?", "options": [ "Organizing project activities and resources", "Developing applications", "Managing databases", "Creating websites" ], "correctAnswer": 0, "difficulty": "intermediate" }, 
-            { "question": "What characterizes a Technology Systems Specialist's work?", "options": [ "Assessing organizational needs and proposing solutions", "Programming software", "Administering databases", "Designing networks" ], "correctAnswer": 0, "difficulty": "intermediate" }, 
-            { "question": "What skills are most important for a Database Administrator?", "options": [ "Database management and security expertise", "Programming languages", "Customer service", "Project management" ], "correctAnswer": 0, "difficulty": "intermediate" }, 
-            { "question": "What knowledge is essential for a Help Desk Supervisor?", "options": [ "Technical support processes and team management", "Programming languages", "Database administration", "Network design" ], "correctAnswer": 0, "difficulty": "intermediate" }, 
-            { "question": "What experience benefits a Project Manager most?", "options": [ "Project coordination and team leadership", "Programming skills", "Database administration", "Network management" ], "correctAnswer": 0, "difficulty": "intermediate" }, 
-            { "question": "What training is important for a Software Developer?", "options": [ "Programming languages and software development methodologies", "Database administration", "Customer service", "Project management" ], "correctAnswer": 0, "difficulty": "intermediate" }, 
-            { "question": "What expertise should a Help Desk Supervisor have?", "options": [ "Technical support systems and team management", "Programming skills", "Database design", "Network administration" ], "correctAnswer": 0, "difficulty": "intermediate" },
-            { "question": "What skills define a successful Software Developer?", "options": [ "Programming proficiency and problem-solving abilities", "Database management", "Customer service", "Project coordination" ], "correctAnswer": 0, "difficulty": "intermediate" },
-            { "question": "What is the main role of a Data Platform Manager?", "options": [ "Ensuring database availability and optimization", "Creating mobile apps", "Managing customer service", "Designing graphics" ], "correctAnswer": 0, "difficulty": "expert" }, 
-            { "question": "What distinguishes a Software Engineer's role?", "options": [ "Designing and developing complex software systems", "Managing databases", "Providing technical support", "Coordinating projects" ], "correctAnswer": 0, "difficulty": "expert" }, 
-            { "question": "What defines a Technical Operations Supervisor's role?", "options": [ "Overseeing technical support operations", "Programming applications", "Managing databases", "Designing graphics" ], "correctAnswer": 0, "difficulty": "expert" }, 
-            { "question": "What defines a Project Lead's role?", "options": [ "Directing project implementation and team performance", "Programming software", "Administering databases", "Designing graphics" ], "correctAnswer": 0, "difficulty": "expert" }, 
-            { "question": "What is a Program Manager's key function?", "options": [ "Overseeing multiple projects and strategic alignment", "Developing applications", "Managing databases", "Creating networks" ], "correctAnswer": 0, "difficulty": "expert" }, 
-            { "question": "What defines a Business Systems Consultant's role?", "options": [ "Analyzing processes and recommending solutions", "Programming software", "Managing databases", "Designing graphics" ], "correctAnswer": 0, "difficulty": "expert" }, 
-            { "question": "What background is valuable for a Systems Analyst?", "options": [ "Business analysis and technical solution design", "Software development", "Database management", "Help desk support" ], "correctAnswer": 0, "difficulty": "expert" }, 
-            { "question": "What certifications are useful for a Database Administrator?", "options": [ "Database-specific certifications and security credentials", "Programming certificates", "Project management certifications", "Network certifications" ], "correctAnswer": 0, "difficulty": "expert" }, 
-            { "question": "What knowledge is essential for a Project Manager?", "options": [ "Project methodology and resource management", "Programming languages", "Database administration", "Network design" ], "correctAnswer": 0, "difficulty": "expert" }, 
-            { "question": "What tools should a Database Administrator master?", "options": [ "Database management systems and monitoring tools", "Programming IDEs", "Project tracking software", "Network monitoring tools" ], "correctAnswer": 0, "difficulty": "expert" }
-        ] };
-        
+// Quiz Questions Array from JSON
+const quizData = {
+    "questions": [
+        // Beginner (25 questions)
+        {
+            "question": "What is the primary function of a CPU?",
+            "options": [
+                "A) To store data permanently.",
+                "B) To convert AC power to DC power.",
+                "C) To perform calculations and process data.",
+                "D) To display computer output."
+            ],
+            "correctAnswer": 2,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "Which prefix changes the word \"happy\" to its opposite meaning?",
+            "options": [
+                "A) Re-",
+                "B) Un-",
+                "C) Pre-",
+                "D) Dis-"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What does the suffix \"-ed\" do to the word \"walk\"?",
+            "options": [
+                "A) Makes it a noun",
+                "B) Makes it past tense",
+                "C) Turns it into an adjective",
+                "D) Changes its prefix"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "Which of the following is an input device?",
+            "options": [
+                "A) Monitor",
+                "B) Keyboard",
+                "C) Hard Disk Drive",
+                "D) RAM"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What does LAN stand for?",
+            "options": [
+                "A) Local Access Network",
+                "B) Large Area Network",
+                "C) Local Area Network",
+                "D) Long Access Network"
+            ],
+            "correctAnswer": 2,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "Which of the following words is a synonym for \"fast\"?",
+            "options": [
+                "A) Slow",
+                "B) Quick",
+                "C) Big",
+                "D) Large"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What is the function of RAM in a computer?",
+            "options": [
+                "A) To store data permanently",
+                "B) To process all calculations",
+                "C) To temporarily store data and instructions",
+                "D) To display output"
+            ],
+            "correctAnswer": 2,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What is the base verb in the sentence \"He likes chocolate\"?",
+            "options": [
+                "A) Likes",
+                "B) He",
+                "C) Chocolate",
+                "D) Like"
+            ],
+            "correctAnswer": 3,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What does WAN stand for?",
+            "options": [
+                "A) Wide Area Network",
+                "B) Wireless Area Network",
+                "C) Web Access Network",
+                "D) Wide Access Network"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "Which suffix changes \"happy\" into a noun?",
+            "options": [
+                "A) -ful",
+                "B) -ness",
+                "C) -ed",
+                "D) -ing"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "In the sentence \"She plays tennis,\" which subject pronoun requires the verb to have an \"s\"?",
+            "options": [
+                "A) I",
+                "B) We",
+                "C) They",
+                "D) She"
+            ],
+            "correctAnswer": 3,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What is the primary function of the Power Supply Unit (PSU)?",
+            "options": [
+                "A) Store data permanently",
+                "B) Connect all components of the computer",
+                "C) Convert AC power to DC power",
+                "D) Improve graphics for gaming"
+            ],
+            "correctAnswer": 2,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What is the synonym for \"small\"?",
+            "options": [
+                "A) Large",
+                "B) Huge",
+                "C) Tiny",
+                "D) Quick"
+            ],
+            "correctAnswer": 2,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What does the root word in \"disconnect\" mean?",
+            "options": [
+                "A) Not connected",
+                "B) Connect",
+                "C) Disjointed",
+                "D) Reconnect"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What is BIOS responsible for during the computer's startup?",
+            "options": [
+                "A) Storing user data",
+                "B) Initializing hardware before the OS starts",
+                "C) Managing internet connections",
+                "D) Improving graphics"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What is the opposite of \"Sad\"?",
+            "options": [
+                "A) Ugly",
+                "B) Fat",
+                "C) Happy",
+                "D) Poor"
+            ],
+            "correctAnswer": 2,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "Which component displays the computer’s output?",
+            "options": [
+                "A) Keyboard",
+                "B) Monitor",
+                "C) CPU",
+                "D) Mouse"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "Which of the following uses the prefix \"re-\"?",
+            "options": [
+                "A) Disconnect",
+                "B) Rebuild",
+                "C) Unhappy",
+                "D) Preview"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "Which suffix in \"hopeful\" means \"full of\"?",
+            "options": [
+                "A) -ed",
+                "B) -ful",
+                "C) -ness",
+                "D) -ing"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What does HDD stand for?",
+            "options": [
+                "A) High Data Drive",
+                "B) Hard Disk Drive",
+                "C) Hard Data Device",
+                "D) High Disk Device"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "Which of the following is an example of a habit in the present simple tense?",
+            "options": [
+                "A) She goes to the gym every day.",
+                "B) He is going to the gym now.",
+                "C) They went to the gym yesterday.",
+                "D) She will go to the gym tomorrow."
+            ],
+            "correctAnswer": 0,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What does the abbreviation \"IT\" stand for?",
+            "options": [
+                "A) Information Transfer",
+                "B) Internet Technology",
+                "C) Information Technology",
+                "D) International Telecommunication"
+            ],
+            "correctAnswer": 2,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "Which PC component temporarily stores data for quick access?",
+            "options": [
+                "A) Hard Disk Drive",
+                "B) Power Supply Unit",
+                "C) RAM",
+                "D) CPU"
+            ],
+            "correctAnswer": 2,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What is a synonym for \"quick\"?",
+            "options": [
+                "A) Slow",
+                "B) Speedy",
+                "C) Small",
+                "D) Large"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What does the prefix \"pre-\" mean?",
+            "options": [
+                "A) After",
+                "B) Opposite",
+                "C) Before",
+                "D) Together"
+            ],
+            "correctAnswer": 2,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "Which sentence is in the present simple tense?",
+            "options": [
+                "A) They are watching TV.",
+                "B) She likes ice cream.",
+                "C) He will visit tomorrow.",
+                "D) I was reading a book."
+            ],
+            "correctAnswer": 1,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "Which word has the root \"build\"?",
+            "options": [
+                "A) Rebuild",
+                "B) Disconnected",
+                "C) Happiness",
+                "D) Preview"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What is the abbreviation for \"Basic Input/Output System\"?",
+            "options": [
+                "A) HDD",
+                "B) BIOS",
+                "C) LAN",
+                "D) WAN"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What does \"Water boils at 100°C\" describe?",
+            "options": [
+                "A) A habit",
+                "B) A routine",
+                "C) A scientific fact",
+                "D) A temporary state"
+            ],
+            "correctAnswer": 2,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "Which component enhances graphics for video and games?",
+            "options": [
+                "A) Motherboard",
+                "B) Video Graphics Card",
+                "C) Optical Disk Drive",
+                "D) RAM"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "Which of the following words is a synonym for \"large\"?",
+            "options": [
+                "A) Tiny",
+                "B) Huge",
+                "C) Small",
+                "D) Quick"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "Which sentence forms a question in the present simple?",
+            "options": [
+                "A) Are you eating pizza?",
+                "B) Do you like pizza?",
+                "C) Have you eaten pizza?",
+                "D) Did you eat pizza?"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What is the role of the Monitor in a PC?",
+            "options": [
+                "A) Input device for typing text",
+                "B) Provides power to components",
+                "C) Displays the computer’s output",
+                "D) Reads optical discs"
+            ],
+            "correctAnswer": 2,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What does the prefix \"dis-\" mean in \"disconnect\"?",
+            "options": [
+                "A) Opposite of",
+                "B) Together",
+                "C) Before",
+                "D) After"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "Which of the following is a general truth in the present simple?",
+            "options": [
+                "A) She is eating breakfast now.",
+                "B) The Earth orbits the Sun.",
+                "C) He will start school tomorrow.",
+                "D) They were at the park."
+            ],
+            "correctAnswer": 1,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What is the main function of a Hard Disk Drive (HDD)?",
+            "options": [
+                "A) Temporary storage of data",
+                "B) Permanent storage of data",
+                "C) Converts AC to DC power",
+                "D) Processes calculations"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "The root of the word \"rebuild\" is .....",
+            "options": [
+                "A) re",
+                "B) build",
+                "C) rebuilt",
+                "D) builder"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "The suffix \"-ed\" in \"walked\" changes the verb \"walk\" into its ..... tense form.",
+            "options": [
+                "A) present",
+                "B) past",
+                "C) future",
+                "D) continuous"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "The prefix \"un-\" in \"unhappy\" changes the meaning of \"happy\" to its .....",
+            "options": [
+                "A) synonym",
+                "B) antonym",
+                "C) plural",
+                "D) suffix"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "The CPU is often referred to as the ..... of the computer where most calculations take place.",
+            "options": [
+                "A) heart",
+                "B) brain",
+                "C) lungs",
+                "D) hands"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "beginner"
+        },
+        {
+            "question": "To make the sentence \"I like coffee\" negative in the present simple, you would say:",
+            "options": [
+                "A) I doesn’t like coffee",
+                "B) I not like coffee",
+                "C) I don't like coffee",
+                "D) I didn't like coffee"
+            ],
+            "correctAnswer": 2,
+            "difficulty": "beginner"
+        },
+
+        // Intermediate (25 questions)
+        {
+            "question": "Which job involves creating software by writing and testing code?",
+            "options": [
+                "A) Helpdesk Supervisor",
+                "B) Database Administrator",
+                "C) Software Developer",
+                "D) System Analyst"
+            ],
+            "correctAnswer": 2,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What is the role of a Project Manager?",
+            "options": [
+                "A) To oversee a team that provides technical support",
+                "B) To organize projects and ensure timely completion",
+                "C) To fix hardware and software issues",
+                "D) To create new software applications"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What is the role of a System Analyst?",
+            "options": [
+                "A) Manage and store data",
+                "B) Troubleshoot and repair hardware",
+                "C) Evaluate systems and suggest improvements",
+                "D) Develop software applications"
+            ],
+            "correctAnswer": 2,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What does a Database Administrator do?",
+            "options": [
+                "A) Manages software that organizes and stores data",
+                "B) Troubleshoots hardware problems",
+                "C) Writes code for software applications",
+                "D) Oversees technical support teams"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What does a Support Technician do?",
+            "options": [
+                "A) Writes and tests code for software",
+                "B) Fixes technical problems for users",
+                "C) Evaluates systems and suggests improvements",
+                "D) Oversees projects and budgets"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What does a Helpdesk Supervisor do?",
+            "options": [
+                "A) Fixes technical problems for users",
+                "B) Oversees a team providing technical support",
+                "C) Writes code for applications",
+                "D) Manages software for organizing data"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "A Support Technician is responsible for ..... technical issues.",
+            "options": [
+                "A) creating",
+                "B) storing",
+                "C) fixing",
+                "D) designing"
+            ],
+            "correctAnswer": 2,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "A Database Administrator manages and maintains the ..... that organize and store data.",
+            "options": [
+                "A) projects",
+                "B) software",
+                "C) networks",
+                "D) servers"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "A Helpdesk Supervisor ..... a team that provides technical support.",
+            "options": [
+                "A) builds",
+                "B) supervises",
+                "C) purchases",
+                "D) installs"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "A System Analyst evaluates an organization’s systems to suggest .....",
+            "options": [
+                "A) entertainment options",
+                "B) improvements",
+                "C) decorations",
+                "D) financial audits"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What does a Database Administrator do?",
+            "options": [
+                "A) Manages software that organizes and stores data",
+                "B) Troubleshoots hardware problems",
+                "C) Writes code for software applications",
+                "D) Oversees technical support teams"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What is the role of a System Analyst?",
+            "options": [
+                "A) Manage and store data",
+                "B) Troubleshoot and repair hardware",
+                "C) Evaluate systems and suggest improvements",
+                "D) Develop software applications"
+            ],
+            "correctAnswer": 2,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What does a Database Administrator do?",
+            "options": [
+                "A) Manages software that organizes and stores data",
+                "B) Troubleshoots hardware problems",
+                "C) Writes code for software applications",
+                "D) Oversees technical support teams"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What is the role of a System Analyst?",
+            "options": [
+                "A) Manage and store data",
+                "B) Troubleshoot and repair hardware",
+                "C) Evaluate systems and suggest improvements",
+                "D) Develop software applications"
+            ],
+            "correctAnswer": 2,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What does a Database Administrator do?",
+            "options": [
+                "A) Manages software that organizes and stores data",
+                "B) Troubleshoots hardware problems",
+                "C) Writes code for software applications",
+                "D) Oversees technical support teams"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What does a Support Technician do?",
+            "options": [
+                "A) Writes and tests code for software",
+                "B) Fixes technical problems for users",
+                "C) Evaluates systems and suggests improvements",
+                "D) Oversees projects and budgets"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What does a Helpdesk Supervisor do?",
+            "options": [
+                "A) Fixes technical problems for users",
+                "B) Oversees a team providing technical support",
+                "C) Writes code for applications",
+                "D) Manages software for organizing data"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "A Support Technician is responsible for ..... technical issues.",
+            "options": [
+                "A) creating",
+                "B) storing",
+                "C) fixing",
+                "D) designing"
+            ],
+            "correctAnswer": 2,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "A Database Administrator manages and maintains the ..... that organize and store data.",
+            "options": [
+                "A) projects",
+                "B) software",
+                "C) networks",
+                "D) servers"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "A Helpdesk Supervisor ..... a team that provides technical support.",
+            "options": [
+                "A) builds",
+                "B) supervises",
+                "C) purchases",
+                "D) installs"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "A System Analyst evaluates an organization’s systems to suggest .....",
+            "options": [
+                "A) entertainment options",
+                "B) improvements",
+                "C) decorations",
+                "D) financial audits"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What does a Database Administrator do?",
+            "options": [
+                "A) Manages software that organizes and stores data",
+                "B) Troubleshoots hardware problems",
+                "C) Writes code for software applications",
+                "D) Oversees technical support teams"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "Which PC component temporarily stores data for quick access?",
+            "options": [
+                "A) Hard Disk Drive",
+                "B) Power Supply Unit",
+                "C) RAM",
+                "D) CPU"
+            ],
+            "correctAnswer": 2,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What is a synonym for \"quick\"?",
+            "options": [
+                "A) Slow",
+                "B) Speedy",
+                "C) Small",
+                "D) Large"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "What does the prefix \"pre-\" mean?",
+            "options": [
+                "A) After",
+                "B) Opposite",
+                "C) Before",
+                "D) Together"
+            ],
+            "correctAnswer": 2,
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "Which sentence is in the present simple tense?",
+            "options": [
+                "A) They are watching TV.",
+                "B) She likes ice cream.",
+                "C) He will visit tomorrow.",
+                "D) I was reading a book."
+            ],
+            "correctAnswer": 1,
+            "difficulty": "intermediate"
+        },
+
+        // Expert (20 questions)
+        {
+            "question": "Which of the following is not a valid type of SQL join?",
+            "options": [
+                "A) INNER JOIN",
+                "B) OUTER JOIN",
+                "C) CROSS JOIN",
+                "D) UNIVERSAL JOIN"
+            ],
+            "correctAnswer": 3,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What distinguishes a Software Engineer's role?",
+            "options": [
+                "A) Designing and developing complex software systems",
+                "B) Managing databases",
+                "C) Providing technical support",
+                "D) Coordinating projects"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What defines a Technical Operations Supervisor's role?",
+            "options": [
+                "A) Overseeing technical support operations",
+                "B) Programming applications",
+                "C) Managing databases",
+                "D) Designing graphics"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What defines a Project Lead's role?",
+            "options": [
+                "A) Directing project implementation and team performance",
+                "B) Programming software",
+                "C) Administering databases",
+                "D) Designing graphics"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What is a Program Manager's key function?",
+            "options": [
+                "A) Overseeing multiple projects and strategic alignment",
+                "B) Developing applications",
+                "C) Managing databases",
+                "D) Creating networks"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What defines a Business Systems Consultant's role?",
+            "options": [
+                "A) Analyzing processes and recommending solutions",
+                "B) Programming software",
+                "C) Managing databases",
+                "D) Designing graphics"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What background is valuable for a Systems Analyst?",
+            "options": [
+                "A) Business analysis and technical solution design",
+                "B) Software development",
+                "C) Database management",
+                "D) Help desk support"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What certifications are useful for a Database Administrator?",
+            "options": [
+                "A) Database-specific certifications and security credentials",
+                "B) Programming certificates",
+                "C) Project management certifications",
+                "D) Network certifications"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What knowledge is essential for a Project Manager?",
+            "options": [
+                "A) Project methodology and resource management",
+                "B) Programming languages",
+                "C) Database administration",
+                "D) Network design"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What tools should a Database Administrator master?",
+            "options": [
+                "A) Database management systems and monitoring tools",
+                "B) Programming IDEs",
+                "C) Project tracking software",
+                "D) Network monitoring tools"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What is the main role of a Data Platform Manager?",
+            "options": [
+                "A) Ensuring database availability and optimization",
+                "B) Creating mobile apps",
+                "C) Managing customer service",
+                "D) Designing graphics"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What defines a Technical Support Manager's role?",
+            "options": [
+                "A) Leading technical support teams and ensuring service quality",
+                "B) Developing software",
+                "C) Managing databases",
+                "D) Designing websites"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What expertise should a Help Desk Supervisor have?",
+            "options": [
+                "A) Technical support systems and team management",
+                "B) Programming skills",
+                "C) Database design",
+                "D) Network administration"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What skills define a successful Software Developer?",
+            "options": [
+                "A) Programming proficiency and problem-solving abilities",
+                "B) Database management",
+                "C) Customer service",
+                "D) Project coordination"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "Which suffix in \"hopeful\" means \"full of\"?",
+            "options": [
+                "A) -ed",
+                "B) -ful",
+                "C) -ness",
+                "D) -ing"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What distinguishes a Systems Support Specialist's work?",
+            "options": [
+                "A) Maintaining and troubleshooting computer systems",
+                "B) Programming software",
+                "C) Managing databases",
+                "D) Designing networks"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What is the role of a Technology Systems Specialist?",
+            "options": [
+                "A) Assessing organizational needs and proposing solutions",
+                "B) Programming software",
+                "C) Administering databases",
+                "D) Designing networks"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What is the opposite of \"connect\"?",
+            "options": [
+                "A) Reconnect",
+                "B) Disconnect",
+                "C) Build",
+                "D) Preview"
+            ],
+            "correctAnswer": 1,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What defines a Project Lead's role?",
+            "options": [
+                "A) Directing project implementation and team performance",
+                "B) Programming software",
+                "C) Administering databases",
+                "D) Designing graphics"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What background is valuable for a Systems Analyst?",
+            "options": [
+                "A) Business analysis and technical solution design",
+                "B) Software development",
+                "C) Database management",
+                "D) Help desk support"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What certifications are useful for a Database Administrator?",
+            "options": [
+                "A) Database-specific certifications and security credentials",
+                "B) Programming certificates",
+                "C) Project management certifications",
+                "D) Network certifications"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What tools should a Database Administrator master?",
+            "options": [
+                "A) Database management systems and monitoring tools",
+                "B) Programming IDEs",
+                "C) Project tracking software",
+                "D) Network monitoring tools"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        },
+        {
+            "question": "What is the role of a Project Manager?",
+            "options": [
+                "A) To oversee multiple projects and ensure strategic alignment",
+                "B) To develop applications",
+                "C) To manage databases",
+                "D) To create networks"
+            ],
+            "correctAnswer": 0,
+            "difficulty": "expert"
+        }
+
+    ]
+};
+
+/*
+---
+**ملاحظة:** تم تصنيف الأسئلة بناءً على مستويات الصعوبة كما يلي:
+
+- **المبتدئ (Beginner):** 25 سؤالاً تغطي المفاهيم الأساسية والمصطلحات الشائعة في تكنولوجيا المعلومات والقواعد الإنجليزية.
+  
+- **المتوسط (Intermediate):** 25 سؤالاً تتعلق بالأدوار الوظيفية المحددة في مجال تكنولوجيا المعلومات، مثل Project Manager وSystem Analyst، وتتطلب فهمًا أعمق للمهام والمسؤوليات التقنية.
+  
+- **الخبير (Expert):** 20 سؤالاً تغطي الأدوار الوظيفية المتقدمة والمتخصصة في تكنولوجيا المعلومات، مثل Database Administrator وSystem Analyst، وتتطلب معرفة تقنية متعمقة وفهمًا شاملاً للجوانب المتخصصة.
+
+**تفاصيل التصنيف:**
+
+- **المستوى المبتدئ (Beginner):**
+  - الأسئلة المتعلقة بالمصطلحات الأساسية في تكنولوجيا المعلومات مثل تعريفات المكونات الحاسوبية (CPU, RAM, PSU، إلخ).
+  - الأسئلة المتعلقة بالقواعد الأساسية في اللغة الإنجليزية مثل استخدام اللاحقات والبادئات والمفردات البسيطة.
+
+- **المستوى المتوسط (Intermediate):**
+  - الأسئلة المتعلقة بالأدوار الوظيفية المحددة مثل Project Manager وSystem Analyst.
+  - الأسئلة التي تتطلب فهمًا أعمق للمفاهيم أو تطبيقات في تكنولوجيا المعلومات.
+
+- **المستوى الخبير (Expert):**
+  - الأسئلة المتعلقة بالأدوار الوظيفية المتقدمة مثل Database Administrator وSystem Analyst والتي تتطلب معرفة تقنية متقدمة.
+  - الأسئلة التي تغطي جوانب متخصصة ومعقدة في مجالات تكنولوجيا المعلومات.
+
+**إذا كان لديك أي تعديلات إضافية أو ترغب في إعادة تصنيف بعض الأسئلة، يرجى إعلامي وسأقوم بتحديث التصنيفات بما يتناسب مع احتياجاتك.**
+*/        
         const questions = quizData.questions;
 
         let currentQuestion = 0;
