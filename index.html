@@ -1,1625 +1,220 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English Jobs Career Quiz | By Abdelhamid Khaled</title>
-    <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --success-color: #2ecc71;
-            --warning-color: #e74c3c;
-            --background-color: #f0f2f5;
-            --card-background: #ffffff;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f2f5;
+    padding: 20px;
+}
 
-        body {
-            background-color: var(--background-color);
-            color: var(--primary-color);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            min-height: 100vh;
-            position: relative;
-        }
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 2;
-        }
+.header {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
 
-        .quiz-header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 20px;
-            background: var(--card-background);
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+.header h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
 
-        .quiz-header h1 {
-            color: var(--primary-color);
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
+.header p {
+    opacity: 0.9;
+    font-size: 1.1em;
+}
 
-        .author-credits {
-            margin-top: 10px;
-            color: #666;
-            font-size: 0.9em;
-        }
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0;
+    background: white;
+}
 
-        .difficulty-selector {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
-        }
+th, td {
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    text-align: left;
+    vertical-align: top;
+}
 
-        .difficulty-btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: bold;
-            font-size: 1.1em;
-            text-transform: uppercase;
-            color: white;
-        }
+th {
+    background: #2a5298;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+}
 
-        .difficulty-btn.beginner {
-            background-color: #27ae60;
-        }
+tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
 
-        .difficulty-btn.intermediate {
-            background-color: #f39c12;
-        }
+tr:hover {
+    background-color: #f0f2f5;
+}
 
-        .difficulty-btn.expert {
-            background-color: #c0392b;
-        }
+.code {
+    font-family: 'Consolas', 'Monaco', monospace;
+    background-color: #f8f9fa;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+    white-space: pre;
+    display: block;
+    color: #333;
+    font-size: 0.9em;
+}
 
-        .question-card {
-            background: var(--card-background);
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            animation: slideIn 0.5s ease-out;
-        }
+.error-type {
+    font-weight: 600;
+    color: #e74c3c;
+}
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+.footer {
+    background: #2a5298;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.1em;
+}
 
-        .question, .option, .final-score {
-            user-select: text;
-        }
+.author {
+    display: inline-block;
+    padding: 8px 15px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    margin-top: 10px;
+}
 
-        .question {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-            font-weight: 600;
-        }
+.author i {
+    margin-right: 5px;
+}
 
-        .options {
-            display: grid;
-            gap: 12px;
-        }
-
-        .option {
-            padding: 15px;
-            background-color: var(--background-color);
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.1em;
-        }
-
-        .option:hover {
-            background-color: #e8f4fd;
-            border-color: var(--secondary-color);
-            transform: translateX(5px);
-        }
-
-        .option.selected {
-            background-color: var(--secondary-color);
-            color: white;
-            border-color: var(--secondary-color);
-        }
-
-        .progress-container {
-            margin: 20px 0;
-            padding: 10px;
-            background: var(--card-background);
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 15px;
-            background-color: #e9ecef;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .progress {
-            width: 0%;
-            height: 100%;
-            background-color: var(--secondary-color);
-            transition: width 0.5s ease;
-            border-radius: 10px;
-        }
-
-        .controls {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 25px;
-            gap: 15px;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            background-color: var(--secondary-color);
-            color: white;
-            transition: all 0.3s ease;
-            font-size: 1.1em;
-            font-weight: bold;
-            min-width: 120px;
-            text-transform: uppercase;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .btn:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .score-display {
-            text-align: center;
-            font-size: 1.2rem;
-            margin: 20px 0;
-            padding: 15px;
-            background-color: var(--card-background);
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .final-score {
-            text-align: center;
-            padding: 30px;
-        }
-
-        .final-score h2 {
-            color: var(--primary-color);
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-
-        .final-score p {
-            font-size: 1.2em;
-            margin: 10px 0;
-        }
-
-        .feedback {
-            margin-top: 30px;
-            text-align: left;
-            font-size: 1em;
-            background: var(--card-background);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .feedback h3 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        .feedback .wrong-answer {
-            color: var(--warning-color);
-        }
-
-        .feedback .correct-answer {
-            color: var(--success-color);
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 10px;
-            }
-
-            .quiz-header h1 {
-                font-size: 2em;
-            }
-
-            .question {
-                font-size: 1.1rem;
-            }
-
-            .difficulty-selector {
-                flex-direction: column;
-            }
-
-            .controls {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-            }
-        }
-
-        @media print {
-            body {
-                display: none;
-            }
-        }
-
-        /* Advanced Protection Styles */
-        body {
-            position: relative;
-        }
-
-        .no-screenshot::after {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-            z-index: 9999;
-            pointer-events: none; /* Allow interactions */
-        }
-    </style>
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    th, td {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+    
+    .code {
+        font-size: 0.8em;
+    }
+}
+</style>
 </head>
 <body>
-    <div class="container no-screenshot" id="quiz-container">
-        <div class="quiz-header">
-            <h1>English Jobs Career Quiz</h1>
-            <p>حكمه اليوم وراء كل طالب ناجح نت مفصول</p>
-            <div class="author-credits">Created by Abdelhamid Khaled</div>
-            <div class="difficulty-selector">
-                <button class="difficulty-btn beginner" onclick="setDifficulty('beginner')">Beginner</button>
-                <button class="difficulty-btn intermediate" onclick="setDifficulty('intermediate')">Intermediate</button>
-                <button class="difficulty-btn expert" onclick="setDifficulty('expert')">Expert</button>
-            </div>
-        </div>
-
-        <div class="progress-container">
-            <div class="progress-bar">
-                <div class="progress" id="progress"></div>
-            </div>
-        </div>
-
-        <div id="question-container"></div>
-
-        <div class="controls">
-            <button class="btn" id="prev-btn" onclick="previousQuestion()">Previous</button>
-            <button class="btn" id="next-btn" onclick="nextQuestion()">Next</button>
-        </div>
-
-        <div class="score-display" id="score-display"></div>
+<div class="container">
+    <div class="header">
+        <h1>Python Error Analysis</h1>
+        <p>Common Python Errors and Their Solutions</p>
     </div>
-
-    <script>
-        // Utility functions
-        function shuffle(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
-
-        function shuffleOptions(questions) {
-            questions.forEach(question => {
-                const correctOption = question.options[question.correctAnswer];
-                question.options = shuffle(question.options);
-                question.correctAnswer = question.options.indexOf(correctOption);
-            });
-        }
-
-// Quiz Questions Array from JSON
-const quizData = {
-    "questions": [
-        // Beginner (25 questions)
-        {
-            "question": "What is the primary function of a CPU?",
-            "options": [
-                "A) To store data permanently.",
-                "B) To convert AC power to DC power.",
-                "C) To perform calculations and process data.",
-                "D) To display computer output."
-            ],
-            "correctAnswer": 2,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "Which prefix changes the word \"happy\" to its opposite meaning?",
-            "options": [
-                "A) Re-",
-                "B) Un-",
-                "C) Pre-",
-                "D) Dis-"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "What does the suffix \"-ed\" do to the word \"walk\"?",
-            "options": [
-                "A) Makes it a noun",
-                "B) Makes it past tense",
-                "C) Turns it into an adjective",
-                "D) Changes its prefix"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "Which of the following is an input device?",
-            "options": [
-                "A) Monitor",
-                "B) Keyboard",
-                "C) Hard Disk Drive",
-                "D) RAM"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "What does LAN stand for?",
-            "options": [
-                "A) Local Access Network",
-                "B) Large Area Network",
-                "C) Local Area Network",
-                "D) Long Access Network"
-            ],
-            "correctAnswer": 2,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "Which of the following words is a synonym for \"fast\"?",
-            "options": [
-                "A) Slow",
-                "B) Quick",
-                "C) Big",
-                "D) Large"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "What is the function of RAM in a computer?",
-            "options": [
-                "A) To store data permanently",
-                "B) To process all calculations",
-                "C) To temporarily store data and instructions",
-                "D) To display output"
-            ],
-            "correctAnswer": 2,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "What is the base verb in the sentence \"He likes chocolate\"?",
-            "options": [
-                "A) Likes",
-                "B) He",
-                "C) Chocolate",
-                "D) Like"
-            ],
-            "correctAnswer": 3,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "What does WAN stand for?",
-            "options": [
-                "A) Wide Area Network",
-                "B) Wireless Area Network",
-                "C) Web Access Network",
-                "D) Wide Access Network"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "Which suffix changes \"happy\" into a noun?",
-            "options": [
-                "A) -ful",
-                "B) -ness",
-                "C) -ed",
-                "D) -ing"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "In the sentence \"She plays tennis,\" which subject pronoun requires the verb to have an \"s\"?",
-            "options": [
-                "A) I",
-                "B) We",
-                "C) They",
-                "D) She"
-            ],
-            "correctAnswer": 3,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "What is the primary function of the Power Supply Unit (PSU)?",
-            "options": [
-                "A) Store data permanently",
-                "B) Connect all components of the computer",
-                "C) Convert AC power to DC power",
-                "D) Improve graphics for gaming"
-            ],
-            "correctAnswer": 2,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "What is the synonym for \"small\"?",
-            "options": [
-                "A) Large",
-                "B) Huge",
-                "C) Tiny",
-                "D) Quick"
-            ],
-            "correctAnswer": 2,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "What does the root word in \"disconnect\" mean?",
-            "options": [
-                "A) Not connected",
-                "B) Connect",
-                "C) Disjointed",
-                "D) Reconnect"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "What is BIOS responsible for during the computer's startup?",
-            "options": [
-                "A) Storing user data",
-                "B) Initializing hardware before the OS starts",
-                "C) Managing internet connections",
-                "D) Improving graphics"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "What is the opposite of \"Sad\"?",
-            "options": [
-                "A) Ugly",
-                "B) Fat",
-                "C) Happy",
-                "D) Poor"
-            ],
-            "correctAnswer": 2,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "Which component displays the computer’s output?",
-            "options": [
-                "A) Keyboard",
-                "B) Monitor",
-                "C) CPU",
-                "D) Mouse"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "Which of the following uses the prefix \"re-\"?",
-            "options": [
-                "A) Disconnect",
-                "B) Rebuild",
-                "C) Unhappy",
-                "D) Preview"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "Which suffix in \"hopeful\" means \"full of\"?",
-            "options": [
-                "A) -ed",
-                "B) -ful",
-                "C) -ness",
-                "D) -ing"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "What does HDD stand for?",
-            "options": [
-                "A) High Data Drive",
-                "B) Hard Disk Drive",
-                "C) Hard Data Device",
-                "D) High Disk Device"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "Which of the following is an example of a habit in the present simple tense?",
-            "options": [
-                "A) She goes to the gym every day.",
-                "B) He is going to the gym now.",
-                "C) They went to the gym yesterday.",
-                "D) She will go to the gym tomorrow."
-            ],
-            "correctAnswer": 0,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "What does the abbreviation \"IT\" stand for?",
-            "options": [
-                "A) Information Transfer",
-                "B) Internet Technology",
-                "C) Information Technology",
-                "D) International Telecommunication"
-            ],
-            "correctAnswer": 2,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "Which PC component temporarily stores data for quick access?",
-            "options": [
-                "A) Hard Disk Drive",
-                "B) Power Supply Unit",
-                "C) RAM",
-                "D) CPU"
-            ],
-            "correctAnswer": 2,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "What is a synonym for \"quick\"?",
-            "options": [
-                "A) Slow",
-                "B) Speedy",
-                "C) Small",
-                "D) Large"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "What does the prefix \"pre-\" mean?",
-            "options": [
-                "A) After",
-                "B) Opposite",
-                "C) Before",
-                "D) Together"
-            ],
-            "correctAnswer": 2,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "Which sentence is in the present simple tense?",
-            "options": [
-                "A) They are watching TV.",
-                "B) She likes ice cream.",
-                "C) He will visit tomorrow.",
-                "D) I was reading a book."
-            ],
-            "correctAnswer": 1,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "Which word has the root \"build\"?",
-            "options": [
-                "A) Rebuild",
-                "B) Disconnected",
-                "C) Happiness",
-                "D) Preview"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "What is the abbreviation for \"Basic Input/Output System\"?",
-            "options": [
-                "A) HDD",
-                "B) BIOS",
-                "C) LAN",
-                "D) WAN"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "What does \"Water boils at 100°C\" describe?",
-            "options": [
-                "A) A habit",
-                "B) A routine",
-                "C) A scientific fact",
-                "D) A temporary state"
-            ],
-            "correctAnswer": 2,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "Which component enhances graphics for video and games?",
-            "options": [
-                "A) Motherboard",
-                "B) Video Graphics Card",
-                "C) Optical Disk Drive",
-                "D) RAM"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "Which of the following words is a synonym for \"large\"?",
-            "options": [
-                "A) Tiny",
-                "B) Huge",
-                "C) Small",
-                "D) Quick"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "Which sentence forms a question in the present simple?",
-            "options": [
-                "A) Are you eating pizza?",
-                "B) Do you like pizza?",
-                "C) Have you eaten pizza?",
-                "D) Did you eat pizza?"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "What is the role of the Monitor in a PC?",
-            "options": [
-                "A) Input device for typing text",
-                "B) Provides power to components",
-                "C) Displays the computer’s output",
-                "D) Reads optical discs"
-            ],
-            "correctAnswer": 2,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "What does the prefix \"dis-\" mean in \"disconnect\"?",
-            "options": [
-                "A) Opposite of",
-                "B) Together",
-                "C) Before",
-                "D) After"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "Which of the following is a general truth in the present simple?",
-            "options": [
-                "A) She is eating breakfast now.",
-                "B) The Earth orbits the Sun.",
-                "C) He will start school tomorrow.",
-                "D) They were at the park."
-            ],
-            "correctAnswer": 1,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "What is the main function of a Hard Disk Drive (HDD)?",
-            "options": [
-                "A) Temporary storage of data",
-                "B) Permanent storage of data",
-                "C) Converts AC to DC power",
-                "D) Processes calculations"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "The root of the word \"rebuild\" is .....",
-            "options": [
-                "A) re",
-                "B) build",
-                "C) rebuilt",
-                "D) builder"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "The suffix \"-ed\" in \"walked\" changes the verb \"walk\" into its ..... tense form.",
-            "options": [
-                "A) present",
-                "B) past",
-                "C) future",
-                "D) continuous"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "The prefix \"un-\" in \"unhappy\" changes the meaning of \"happy\" to its .....",
-            "options": [
-                "A) synonym",
-                "B) antonym",
-                "C) plural",
-                "D) suffix"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "The CPU is often referred to as the ..... of the computer where most calculations take place.",
-            "options": [
-                "A) heart",
-                "B) brain",
-                "C) lungs",
-                "D) hands"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "beginner"
-        },
-        {
-            "question": "To make the sentence \"I like coffee\" negative in the present simple, you would say:",
-            "options": [
-                "A) I doesn’t like coffee",
-                "B) I not like coffee",
-                "C) I don't like coffee",
-                "D) I didn't like coffee"
-            ],
-            "correctAnswer": 2,
-            "difficulty": "beginner"
-        },
-
-        // Intermediate (25 questions)
-        {
-            "question": "Which job involves creating software by writing and testing code?",
-            "options": [
-                "A) Helpdesk Supervisor",
-                "B) Database Administrator",
-                "C) Software Developer",
-                "D) System Analyst"
-            ],
-            "correctAnswer": 2,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "What is the role of a Project Manager?",
-            "options": [
-                "A) To oversee a team that provides technical support",
-                "B) To organize projects and ensure timely completion",
-                "C) To fix hardware and software issues",
-                "D) To create new software applications"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "What is the role of a System Analyst?",
-            "options": [
-                "A) Manage and store data",
-                "B) Troubleshoot and repair hardware",
-                "C) Evaluate systems and suggest improvements",
-                "D) Develop software applications"
-            ],
-            "correctAnswer": 2,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "What does a Database Administrator do?",
-            "options": [
-                "A) Manages software that organizes and stores data",
-                "B) Troubleshoots hardware problems",
-                "C) Writes code for software applications",
-                "D) Oversees technical support teams"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "What does a Support Technician do?",
-            "options": [
-                "A) Writes and tests code for software",
-                "B) Fixes technical problems for users",
-                "C) Evaluates systems and suggests improvements",
-                "D) Oversees projects and budgets"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "What does a Helpdesk Supervisor do?",
-            "options": [
-                "A) Fixes technical problems for users",
-                "B) Oversees a team providing technical support",
-                "C) Writes code for applications",
-                "D) Manages software for organizing data"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "A Support Technician is responsible for ..... technical issues.",
-            "options": [
-                "A) creating",
-                "B) storing",
-                "C) fixing",
-                "D) designing"
-            ],
-            "correctAnswer": 2,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "A Database Administrator manages and maintains the ..... that organize and store data.",
-            "options": [
-                "A) projects",
-                "B) software",
-                "C) networks",
-                "D) servers"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "A Helpdesk Supervisor ..... a team that provides technical support.",
-            "options": [
-                "A) builds",
-                "B) supervises",
-                "C) purchases",
-                "D) installs"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "A System Analyst evaluates an organization’s systems to suggest .....",
-            "options": [
-                "A) entertainment options",
-                "B) improvements",
-                "C) decorations",
-                "D) financial audits"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "What does a Database Administrator do?",
-            "options": [
-                "A) Manages software that organizes and stores data",
-                "B) Troubleshoots hardware problems",
-                "C) Writes code for software applications",
-                "D) Oversees technical support teams"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "What is the role of a System Analyst?",
-            "options": [
-                "A) Manage and store data",
-                "B) Troubleshoot and repair hardware",
-                "C) Evaluate systems and suggest improvements",
-                "D) Develop software applications"
-            ],
-            "correctAnswer": 2,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "What does a Database Administrator do?",
-            "options": [
-                "A) Manages software that organizes and stores data",
-                "B) Troubleshoots hardware problems",
-                "C) Writes code for software applications",
-                "D) Oversees technical support teams"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "What is the role of a System Analyst?",
-            "options": [
-                "A) Manage and store data",
-                "B) Troubleshoot and repair hardware",
-                "C) Evaluate systems and suggest improvements",
-                "D) Develop software applications"
-            ],
-            "correctAnswer": 2,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "What does a Database Administrator do?",
-            "options": [
-                "A) Manages software that organizes and stores data",
-                "B) Troubleshoots hardware problems",
-                "C) Writes code for software applications",
-                "D) Oversees technical support teams"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "What does a Support Technician do?",
-            "options": [
-                "A) Writes and tests code for software",
-                "B) Fixes technical problems for users",
-                "C) Evaluates systems and suggests improvements",
-                "D) Oversees projects and budgets"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "What does a Helpdesk Supervisor do?",
-            "options": [
-                "A) Fixes technical problems for users",
-                "B) Oversees a team providing technical support",
-                "C) Writes code for applications",
-                "D) Manages software for organizing data"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "A Support Technician is responsible for ..... technical issues.",
-            "options": [
-                "A) creating",
-                "B) storing",
-                "C) fixing",
-                "D) designing"
-            ],
-            "correctAnswer": 2,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "A Database Administrator manages and maintains the ..... that organize and store data.",
-            "options": [
-                "A) projects",
-                "B) software",
-                "C) networks",
-                "D) servers"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "A Helpdesk Supervisor ..... a team that provides technical support.",
-            "options": [
-                "A) builds",
-                "B) supervises",
-                "C) purchases",
-                "D) installs"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "A System Analyst evaluates an organization’s systems to suggest .....",
-            "options": [
-                "A) entertainment options",
-                "B) improvements",
-                "C) decorations",
-                "D) financial audits"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "What does a Database Administrator do?",
-            "options": [
-                "A) Manages software that organizes and stores data",
-                "B) Troubleshoots hardware problems",
-                "C) Writes code for software applications",
-                "D) Oversees technical support teams"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "Which PC component temporarily stores data for quick access?",
-            "options": [
-                "A) Hard Disk Drive",
-                "B) Power Supply Unit",
-                "C) RAM",
-                "D) CPU"
-            ],
-            "correctAnswer": 2,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "What is a synonym for \"quick\"?",
-            "options": [
-                "A) Slow",
-                "B) Speedy",
-                "C) Small",
-                "D) Large"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "What does the prefix \"pre-\" mean?",
-            "options": [
-                "A) After",
-                "B) Opposite",
-                "C) Before",
-                "D) Together"
-            ],
-            "correctAnswer": 2,
-            "difficulty": "intermediate"
-        },
-        {
-            "question": "Which sentence is in the present simple tense?",
-            "options": [
-                "A) They are watching TV.",
-                "B) She likes ice cream.",
-                "C) He will visit tomorrow.",
-                "D) I was reading a book."
-            ],
-            "correctAnswer": 1,
-            "difficulty": "intermediate"
-        },
-
-        // Expert (20 questions)
-        {
-            "question": "Which of the following is not a valid type of SQL join?",
-            "options": [
-                "A) INNER JOIN",
-                "B) OUTER JOIN",
-                "C) CROSS JOIN",
-                "D) UNIVERSAL JOIN"
-            ],
-            "correctAnswer": 3,
-            "difficulty": "expert"
-        },
-        {
-            "question": "What distinguishes a Software Engineer's role?",
-            "options": [
-                "A) Designing and developing complex software systems",
-                "B) Managing databases",
-                "C) Providing technical support",
-                "D) Coordinating projects"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "expert"
-        },
-        {
-            "question": "What defines a Technical Operations Supervisor's role?",
-            "options": [
-                "A) Overseeing technical support operations",
-                "B) Programming applications",
-                "C) Managing databases",
-                "D) Designing graphics"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "expert"
-        },
-        {
-            "question": "What defines a Project Lead's role?",
-            "options": [
-                "A) Directing project implementation and team performance",
-                "B) Programming software",
-                "C) Administering databases",
-                "D) Designing graphics"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "expert"
-        },
-        {
-            "question": "What is a Program Manager's key function?",
-            "options": [
-                "A) Overseeing multiple projects and strategic alignment",
-                "B) Developing applications",
-                "C) Managing databases",
-                "D) Creating networks"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "expert"
-        },
-        {
-            "question": "What defines a Business Systems Consultant's role?",
-            "options": [
-                "A) Analyzing processes and recommending solutions",
-                "B) Programming software",
-                "C) Managing databases",
-                "D) Designing graphics"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "expert"
-        },
-        {
-            "question": "What background is valuable for a Systems Analyst?",
-            "options": [
-                "A) Business analysis and technical solution design",
-                "B) Software development",
-                "C) Database management",
-                "D) Help desk support"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "expert"
-        },
-        {
-            "question": "What certifications are useful for a Database Administrator?",
-            "options": [
-                "A) Database-specific certifications and security credentials",
-                "B) Programming certificates",
-                "C) Project management certifications",
-                "D) Network certifications"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "expert"
-        },
-        {
-            "question": "What knowledge is essential for a Project Manager?",
-            "options": [
-                "A) Project methodology and resource management",
-                "B) Programming languages",
-                "C) Database administration",
-                "D) Network design"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "expert"
-        },
-        {
-            "question": "What tools should a Database Administrator master?",
-            "options": [
-                "A) Database management systems and monitoring tools",
-                "B) Programming IDEs",
-                "C) Project tracking software",
-                "D) Network monitoring tools"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "expert"
-        },
-        {
-            "question": "What is the main role of a Data Platform Manager?",
-            "options": [
-                "A) Ensuring database availability and optimization",
-                "B) Creating mobile apps",
-                "C) Managing customer service",
-                "D) Designing graphics"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "expert"
-        },
-        {
-            "question": "What defines a Technical Support Manager's role?",
-            "options": [
-                "A) Leading technical support teams and ensuring service quality",
-                "B) Developing software",
-                "C) Managing databases",
-                "D) Designing websites"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "expert"
-        },
-        {
-            "question": "What expertise should a Help Desk Supervisor have?",
-            "options": [
-                "A) Technical support systems and team management",
-                "B) Programming skills",
-                "C) Database design",
-                "D) Network administration"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "expert"
-        },
-        {
-            "question": "What skills define a successful Software Developer?",
-            "options": [
-                "A) Programming proficiency and problem-solving abilities",
-                "B) Database management",
-                "C) Customer service",
-                "D) Project coordination"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "expert"
-        },
-        {
-            "question": "Which suffix in \"hopeful\" means \"full of\"?",
-            "options": [
-                "A) -ed",
-                "B) -ful",
-                "C) -ness",
-                "D) -ing"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "expert"
-        },
-        {
-            "question": "What distinguishes a Systems Support Specialist's work?",
-            "options": [
-                "A) Maintaining and troubleshooting computer systems",
-                "B) Programming software",
-                "C) Managing databases",
-                "D) Designing networks"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "expert"
-        },
-        {
-            "question": "What is the role of a Technology Systems Specialist?",
-            "options": [
-                "A) Assessing organizational needs and proposing solutions",
-                "B) Programming software",
-                "C) Administering databases",
-                "D) Designing networks"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "expert"
-        },
-        {
-            "question": "What is the opposite of \"connect\"?",
-            "options": [
-                "A) Reconnect",
-                "B) Disconnect",
-                "C) Build",
-                "D) Preview"
-            ],
-            "correctAnswer": 1,
-            "difficulty": "expert"
-        },
-        {
-            "question": "What defines a Project Lead's role?",
-            "options": [
-                "A) Directing project implementation and team performance",
-                "B) Programming software",
-                "C) Administering databases",
-                "D) Designing graphics"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "expert"
-        },
-        {
-            "question": "What background is valuable for a Systems Analyst?",
-            "options": [
-                "A) Business analysis and technical solution design",
-                "B) Software development",
-                "C) Database management",
-                "D) Help desk support"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "expert"
-        },
-        {
-            "question": "What certifications are useful for a Database Administrator?",
-            "options": [
-                "A) Database-specific certifications and security credentials",
-                "B) Programming certificates",
-                "C) Project management certifications",
-                "D) Network certifications"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "expert"
-        },
-        {
-            "question": "What tools should a Database Administrator master?",
-            "options": [
-                "A) Database management systems and monitoring tools",
-                "B) Programming IDEs",
-                "C) Project tracking software",
-                "D) Network monitoring tools"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "expert"
-        },
-        {
-            "question": "What is the role of a Project Manager?",
-            "options": [
-                "A) To oversee multiple projects and ensure strategic alignment",
-                "B) To develop applications",
-                "C) To manage databases",
-                "D) To create networks"
-            ],
-            "correctAnswer": 0,
-            "difficulty": "expert"
-        }
-
-    ]
-};
-
-/*
----
-**ملاحظة:** تم تصنيف الأسئلة بناءً على مستويات الصعوبة كما يلي:
-
-- **المبتدئ (Beginner):** 25 سؤالاً تغطي المفاهيم الأساسية والمصطلحات الشائعة في تكنولوجيا المعلومات والقواعد الإنجليزية.
-  
-- **المتوسط (Intermediate):** 25 سؤالاً تتعلق بالأدوار الوظيفية المحددة في مجال تكنولوجيا المعلومات، مثل Project Manager وSystem Analyst، وتتطلب فهمًا أعمق للمهام والمسؤوليات التقنية.
-  
-- **الخبير (Expert):** 20 سؤالاً تغطي الأدوار الوظيفية المتقدمة والمتخصصة في تكنولوجيا المعلومات، مثل Database Administrator وSystem Analyst، وتتطلب معرفة تقنية متعمقة وفهمًا شاملاً للجوانب المتخصصة.
-
-**تفاصيل التصنيف:**
-
-- **المستوى المبتدئ (Beginner):**
-  - الأسئلة المتعلقة بالمصطلحات الأساسية في تكنولوجيا المعلومات مثل تعريفات المكونات الحاسوبية (CPU, RAM, PSU، إلخ).
-  - الأسئلة المتعلقة بالقواعد الأساسية في اللغة الإنجليزية مثل استخدام اللاحقات والبادئات والمفردات البسيطة.
-
-- **المستوى المتوسط (Intermediate):**
-  - الأسئلة المتعلقة بالأدوار الوظيفية المحددة مثل Project Manager وSystem Analyst.
-  - الأسئلة التي تتطلب فهمًا أعمق للمفاهيم أو تطبيقات في تكنولوجيا المعلومات.
-
-- **المستوى الخبير (Expert):**
-  - الأسئلة المتعلقة بالأدوار الوظيفية المتقدمة مثل Database Administrator وSystem Analyst والتي تتطلب معرفة تقنية متقدمة.
-  - الأسئلة التي تغطي جوانب متخصصة ومعقدة في مجالات تكنولوجيا المعلومات.
-
-**إذا كان لديك أي تعديلات إضافية أو ترغب في إعادة تصنيف بعض الأسئلة، يرجى إعلامي وسأقوم بتحديث التصنيفات بما يتناسب مع احتياجاتك.**
-*/        
-        const questions = quizData.questions;
-
-        let currentQuestion = 0;
-        let score = 0;
-        let currentDifficulty = null;
-        let filteredQuestions = [];
-        let userAnswers = [];
-
-        function setDifficulty(difficulty) {
-            currentDifficulty = difficulty;
-            filteredQuestions = questions.filter(q => q.difficulty === difficulty);
-            shuffle(filteredQuestions);
-            shuffleOptions(filteredQuestions);
-            currentQuestion = 0;
-            score = 0;
-            userAnswers = new Array(filteredQuestions.length).fill(null);
-            showQuestion();
-            updateProgress();
-            document.getElementById('prev-btn').disabled = true;
-            document.getElementById('next-btn').disabled = true;
-            document.getElementById('score-display').innerHTML = '';
-        }
-
-        function showQuestion() {
-            if (!currentDifficulty) return;
-
-            const questionData = filteredQuestions[currentQuestion];
-            const container = document.getElementById('question-container');
-
-            let html = `
-                <div class="question-card">
-                    <div class="question">Question ${currentQuestion + 1} of ${filteredQuestions.length}</div>
-                    <div class="question">${questionData.question}</div>
-                    <div class="options">
-            `;
-
-            questionData.options.forEach((option, index) => {
-                const selected = userAnswers[currentQuestion] === index ? 'selected' : '';
-                html += `<div class="option ${selected}" onclick="selectOption(${index})">${option}</div>`;
-            });
-
-            html += '</div></div>';
-            container.innerHTML = html;
-
-            updateNavButtons();
-        }
-
-        function selectOption(index) {
-            userAnswers[currentQuestion] = index;
-            const options = document.querySelectorAll('.option');
-            options.forEach((option, idx) => {
-                option.classList.toggle('selected', idx === index);
-            });
-            document.getElementById('next-btn').disabled = false;
-            if (currentQuestion > 0) {
-                document.getElementById('prev-btn').disabled = false;
-            }
-        }
-
-        function previousQuestion() {
-            if (currentQuestion > 0) {
-                currentQuestion--;
-                showQuestion();
-                updateProgress();
-                document.getElementById('next-btn').disabled = userAnswers[currentQuestion] === null;
-                if (currentQuestion === 0) {
-                    document.getElementById('prev-btn').disabled = true;
-                }
-            }
-        }
-
-        function nextQuestion() {
-            if (currentQuestion < filteredQuestions.length - 1) {
-                currentQuestion++;
-                showQuestion();
-                updateProgress();
-                document.getElementById('next-btn').disabled = userAnswers[currentQuestion] === null;
-                if (currentQuestion > 0) {
-                    document.getElementById('prev-btn').disabled = false;
-                }
-            } else {
-                showResults();
-            }
-        }
-
-        function updateProgress() {
-            const progress = ((currentQuestion + 1) / filteredQuestions.length) * 100;
-            document.getElementById('progress').style.width = `${progress}%`;
-        }
-
-        function updateNavButtons() {
-            document.getElementById('prev-btn').disabled = currentQuestion === 0;
-            document.getElementById('next-btn').textContent = 
-                currentQuestion === filteredQuestions.length - 1 ? 'Finish' : 'Next';
-            document.getElementById('next-btn').disabled = userAnswers[currentQuestion] === null;
-        }
-
-        function showResults() {
-            score = userAnswers.reduce((acc, answer, index) => {
-                return acc + (answer === filteredQuestions[index].correctAnswer ? 1 : 0);
-            }, 0);
-
-            const percentage = (score / filteredQuestions.length) * 100;
-            const container = document.getElementById('question-container');
-
-            let resultMessage = '';
-            if (percentage >= 90) resultMessage = 'Outstanding! You are an expert!';
-            else if (percentage >= 70) resultMessage = 'Great job! You have solid knowledge!';
-            else if (percentage >= 50) resultMessage = 'Good effort! Keep learning!';
-            else resultMessage = 'Keep practicing! You will improve!';
-
-            let feedback = '';
-            filteredQuestions.forEach((question, index) => {
-                if (userAnswers[index] !== question.correctAnswer) {
-                    feedback += `
-                        <div class="feedback">
-                            <h3>Question: ${question.question}</h3>
-                            <p class="wrong-answer">Your Answer: ${question.options[userAnswers[index]]}</p>
-                            <p class="correct-answer">Correct Answer: ${question.options[question.correctAnswer]}</p>
-                        </div>
-                    `;
-                }
-            });
-
-            container.innerHTML = `
-                <div class="question-card final-score">
-                    <h2>Quiz Complete!</h2>
-                    <p>Your Score: ${score} out of ${filteredQuestions.length}</p>
-                    <p>Percentage: ${percentage.toFixed(2)}%</p>
-                    <p>${resultMessage}</p>
-                    <button class="btn" onclick="restartQuiz()">Try Again</button>
-                </div>
-                ${feedback}
-            `;
-
-            document.getElementById('prev-btn').style.display = 'none';
-            document.getElementById('next-btn').style.display = 'none';
-        }
-
-        function restartQuiz() {
-            document.getElementById('prev-btn').style.display = 'inline-block';
-            document.getElementById('next-btn').style.display = 'inline-block';
-            document.getElementById('question-container').innerHTML = '';
-            currentQuestion = 0;
-            score = 0;
-            userAnswers = new Array(filteredQuestions.length).fill(null);
-            showQuestion();
-            updateProgress();
-            document.getElementById('prev-btn').disabled = true;
-            document.getElementById('next-btn').disabled = true;
-            document.getElementById('score-display').innerHTML = '';
-        }
-
-        (function() {
-            // Prevent right-click
-            document.addEventListener('contextmenu', function(e) {
-                e.preventDefault();
-                alert('Right-click is disabled');
-            });
-
-            // Disable certain key combinations
-            document.addEventListener('keydown', function(e) {
-                if (e.ctrlKey && e.shiftKey && e.key === 'I') {
-                    e.preventDefault();
-                    alert('Developer tools are disabled');
-                }
-                if (e.ctrlKey && e.shiftKey && e.key === 'J') {
-                    e.preventDefault();
-                    alert('Developer tools are disabled');
-                }
-                if (e.ctrlKey && e.key === 'U') {
-                    e.preventDefault();
-                    alert('View Source is disabled');
-                }
-                if (e.key === 'F12') {
-                    e.preventDefault();
-                    alert('Developer tools are disabled');
-                }
-            });
-
-            
-            // prevent print 
-            let devtools = {open: false, orientation: null};
-            const threshold = 160;
-
-            setInterval(function() {
-                const widthThreshold = window.outerWidth - window.innerWidth > threshold;
-                const heightThreshold = window.outerHeight - window.innerHeight > threshold;
-                const orientation = widthThreshold ? 'vertical' : 'horizontal';
-
-                if (!(heightThreshold && widthThreshold) && 
-                    ((window.Firebug && window.Firebug.chrome && window.Firebug.chrome.isLoaded) || widthThreshold || heightThreshold)) {
-                    if (!devtools.open || devtools.orientation !== orientation) {
-                		devtools.open = true;
-                        devtools.orientation = orientation;
-                        alert('Developer tools are detected and disabled');
-                        window.location.reload();
-                    }
-                } else {
-                    devtools.open = false;
-                    devtools.orientation = null;
-                }
-            }, 1000);
-
-            // Prevent printing
-            window.onbeforeprint = function() {
-                alert('Printing is disabled');
-                return false;
-            };
-
-            // Prevent saving the page
-            window.onbeforeunload = function(e) {
-                e.preventDefault();
-                e.returnValue = '';
-            };
-        })();
-
-        // Prevent screenshot
-        (function() {
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'PrintScreen') {
-                    alert('Screenshot is disabled');
-                }
-            });
-
-            document.addEventListener('dragstart', function(e) {
-                e.preventDefault();
-            });
-
-            document.addEventListener('copy', function(e) {
-                // Allow copy
-            });
-        })();
-
-        window.onload = function() {
-            document.getElementById('question-container').innerHTML = `
-                <div class="question-card">
-                    <h2>Welcome to the IT Career Quiz!</h2>
-                    <p>Please select a difficulty level to begin.</p>
-                </div>
-            `;
-        };
-    </script>
+    
+    <table>
+        <tr>
+            <th>NO</th>
+            <th>Before correcting</th>
+            <th>Type of Error</th>
+            <th>After correcting</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><div class="code">print("Hello, World!)</div></td>
+            <td class="error-type">Syntax Error</td>
+            <td><div class="code">print("Hello, World!")</div></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><div class="code">x=5
+    print(x)</div></td>
+            <td class="error-type">Syntax Error</td>
+            <td><div class="code">x = 5
+print(x)</div></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td><div class="code">x = float(input('Enter a number: '))
+y = float(input('Enter a number: '))
+z = float(input('Enter a number: '))
+average = x+y+z/3
+print(average)</div></td>
+            <td class="error-type">Logical Error</td>
+            <td><div class="code">x = float(input('Enter a number: '))
+y = float(input('Enter a number: '))
+z = float(input('Enter a number: '))
+average = (x + y + z) / 3
+print(average)</div></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td><div class="code">This is a comment
+written in more than just one line
+"""</div></td>
+            <td class="error-type">Syntax Error</td>
+            <td><div class="code">"""
+This is a comment
+written in more than just one line
+"""</div></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td><div class="code">2xnf = "John"
+Total cost= 456543</div></td>
+            <td class="error-type">Syntax Error</td>
+            <td><div class="code">xnf = "John"
+total_cost = 456543</div></td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td><div class="code">X=0
+Y=10
+Z=y/x</div></td>
+            <td class="error-type">Runtime Error</td>
+            <td><div class="code">x = 1  # Changed to avoid division by zero
+y = 10
+z = y / x</div></td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td><div class="code">a = input('Enter 1st number: ')
+b = int(input('Enter 2nd number: '))
+sum = a+b
+print(sum)</div></td>
+            <td class="error-type">Runtime Error</td>
+            <td><div class="code">a = int(input('Enter 1st number: '))
+b = int(input('Enter 2nd number: '))
+sum = a + b
+print(sum)</div></td>
+        </tr>
+    </table>
+    
+    <div class="footer">
+        <div class="author">
+            <i>Created By</i>
+            <strong>Abdelhamid Khald</strong>
+        </div>
+    </div>
+</div>
 </body>
 </html>
