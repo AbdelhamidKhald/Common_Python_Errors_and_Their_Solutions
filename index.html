@@ -22,7 +22,6 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0,0,0,0.1);
     overflow: hidden;
-    margin-bottom: 30px;
 }
 
 .header {
@@ -32,17 +31,7 @@ body {
     text-align: center;
 }
 
-.header h1 {
-    font-size: 2em;
-    margin-bottom: 10px;
-}
-
-.header p {
-    opacity: 0.9;
-    font-size: 1.1em;
-}
-
-.content-section {
+.content {
     padding: 30px;
 }
 
@@ -53,28 +42,44 @@ body {
     border-bottom: 2px solid #1e3c72;
 }
 
-.answers-list {
-    list-style: none;
-}
-
-.answer-item {
+.question {
     background: #f8f9fa;
-    margin: 15px 0;
-    padding: 15px;
+    margin: 20px 0;
+    padding: 20px;
     border-radius: 8px;
     border-left: 4px solid #1e3c72;
 }
 
-.question-number {
-    font-weight: bold;
+.question h3 {
     color: #1e3c72;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
 }
 
-.correct-answer {
-    color: #2e7d32;
-    font-weight: 600;
+.options {
+    margin: 15px 0;
+    padding-left: 20px;
+}
+
+.option {
+    margin: 8px 0;
+}
+
+.code-block {
+    background: #2d2d2d;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    font-family: 'Consolas', monospace;
     margin: 10px 0;
+}
+
+.answer {
+    background: #e8f5e9;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 5px;
+    color: #2e7d32;
+    font-weight: bold;
 }
 
 table {
@@ -104,16 +109,8 @@ tr:nth-child(even) {
     background-color: #f8f9fa;
 }
 
-.code {
-    font-family: 'Consolas', 'Monaco', monospace;
-    background-color: #f8f9fa;
-    padding: 8px 12px;
-    border-radius: 4px;
-    border: 1px solid #e0e0e0;
-    white-space: pre;
-    display: block;
-    color: #333;
-    font-size: 0.9em;
+tr:hover {
+    background-color: #f0f2f5;
 }
 
 .error-type {
@@ -141,17 +138,14 @@ tr:nth-child(even) {
     body {
         padding: 10px;
     }
-    
-    .content-section {
+    .content {
         padding: 15px;
     }
-    
     th, td {
         padding: 10px;
         font-size: 0.9em;
     }
-    
-    .code {
+    .code-block {
         font-size: 0.8em;
     }
 }
@@ -161,52 +155,128 @@ tr:nth-child(even) {
 <div class="container">
     <div class="header">
         <h1>Python Programming Guide</h1>
-        <p>Quiz Answers & Common Errors</p>
+        <p>Questions, Answers & Error Analysis</p>
     </div>
 
-    <div class="content-section">
-        <h2 class="section-title">Python Quiz - Answers</h2>
-        <ul class="answers-list">
-            <li class="answer-item">
-                <div class="question-number">Question 1: What is Python?</div>
-                <div class="correct-answer">Answer: A) A high-level programming language</div>
-            </li>
-            <li class="answer-item">
-                <div class="question-number">Question 2: Which of the following is a correct way to declare a variable in Python?</div>
-                <div class="correct-answer">Answer: B) x = 10</div>
-            </li>
-            <li class="answer-item">
-                <div class="question-number">Question 3: Which of the following is a keyword in Python?</div>
-                <div class="correct-answer">Answer: C) class</div>
-            </li>
-            <li class="answer-item">
-                <div class="question-number">Question 4: Which of the following is not a valid identifier in Python?</div>
-                <div class="correct-answer">Answer: C) 9var</div>
-            </li>
-            <li class="answer-item">
-                <div class="question-number">Question 5: What will be the output of x = 5, y = "5", print(x + y)?</div>
-                <div class="correct-answer">Answer: C) TypeError</div>
-            </li>
-            <li class="answer-item">
-                <div class="question-number">Question 6: What will be the output of x = 20, y = 20, print(x + y * 2)?</div>
-                <div class="correct-answer">Answer: A) 60</div>
-            </li>
-            <li class="answer-item">
-                <div class="question-number">Question 7: Which operator is used for exponentiation in Python?</div>
-                <div class="correct-answer">Answer: B) **</div>
-            </li>
-            <li class="answer-item">
-                <div class="question-number">Question 9: What will be the output of x = "Hello", y = "World", print(x + y)?</div>
-                <div class="correct-answer">Answer: B) HelloWorld</div>
-            </li>
-            <li class="answer-item">
-                <div class="question-number">Question 10: Which statement about division is correct?</div>
-                <div class="correct-answer">Answer: C) 10 / 3 results in a float</div>
-            </li>
-        </ul>
+    <div class="content">
+        <h2 class="section-title">Python Quiz - Questions and Answers</h2>
+
+        <div class="question">
+            <h3>Q1: What is Python?</h3>
+            <div class="options">
+                <div class="option">A) A high-level programming language</div>
+                <div class="option">B) A low-level programming language</div>
+                <div class="option">C) An operating system</div>
+                <div class="option">D) A type of snake</div>
+            </div>
+            <div class="answer">Answer: A) A high-level programming language</div>
+        </div>
+
+        <div class="question">
+            <h3>Q2: Which of the following is a correct way to declare a variable in Python?</h3>
+            <div class="options">
+                <div class="option">A) int x = 10</div>
+                <div class="option">B) x = 10</div>
+                <div class="option">C) float x = 10.5</div>
+                <div class="option">D) var x = 10</div>
+            </div>
+            <div class="answer">Answer: B) x = 10</div>
+        </div>
+
+        <div class="question">
+            <h3>Q3: Which of the following is a keyword in Python?</h3>
+            <div class="options">
+                <div class="option">A) function</div>
+                <div class="option">B) variable</div>
+                <div class="option">C) class</div>
+                <div class="option">D) define</div>
+            </div>
+            <div class="answer">Answer: C) class</div>
+        </div>
+
+        <div class="question">
+            <h3>Q4: Which of the following is not a valid identifier in Python?</h3>
+            <div class="options">
+                <div class="option">A) my_var</div>
+                <div class="option">B) _var</div>
+                <div class="option">C) 9var</div>
+                <div class="option">D) var9</div>
+            </div>
+            <div class="answer">Answer: C) 9var</div>
+        </div>
+
+        <div class="question">
+            <h3>Q5: What will be the output of the following code?</h3>
+            <div class="code-block">x = 5<br>y = "5"<br>print(x + y)</div>
+            <div class="options">
+                <div class="option">A) 10</div>
+                <div class="option">B) TypeError</div>
+                <div class="option">C) 55</div>
+                <div class="option">D) None of the above</div>
+            </div>
+            <div class="answer">Answer: B) TypeError</div>
+        </div>
+
+        <div class="question">
+            <h3>Q6: What will be the output of the following code?</h3>
+            <div class="code-block">x = 10<br>y = 20<br>print(x + y * 2)</div>
+            <div class="options">
+                <div class="option">A) 60</div>
+                <div class="option">B) 50</div>
+                <div class="option">C) 30</div>
+                <div class="option">D) 40</div>
+            </div>
+            <div class="answer">Answer: B) 50</div>
+        </div>
+
+        <div class="question">
+            <h3>Q7: Which operator is used for exponentiation in Python?</h3>
+            <div class="options">
+                <div class="option">A) ^</div>
+                <div class="option">B) **</div>
+                <div class="option">C) //</div>
+                <div class="option">D) %</div>
+            </div>
+            <div class="answer">Answer: B) **</div>
+        </div>
+
+        <div class="question">
+            <h3>Q8: What is the output of the following code?</h3>
+            <div class="code-block">print(10 / 3)</div>
+            <div class="options">
+                <div class="option">A) 3</div>
+                <div class="option">B) 3.0</div>
+                <div class="option">C) 3.33</div>
+                <div class="option">D) 3.3333333333333335</div>
+            </div>
+            <div class="answer">Answer: D) 3.3333333333333335</div>
+        </div>
+
+        <div class="question">
+            <h3>Q9: What will be the output of the following code?</h3>
+            <div class="code-block">x = "Hello"<br>y = "World"<br>print(x + y)</div>
+            <div class="options">
+                <div class="option">A) Hello World</div>
+                <div class="option">B) HelloWorld</div>
+                <div class="option">C) Hello, World</div>
+                <div class="option">D) None of the above</div>
+            </div>
+            <div class="answer">Answer: B) HelloWorld</div>
+        </div>
+
+        <div class="question">
+            <h3>Q10: Which of the following statements is correct?</h3>
+            <div class="options">
+                <div class="option">A) 10 / 3 results in an integer.</div>
+                <div class="option">B) 10 / 3 results in a float.</div>
+                <div class="option">C) 10 / 3 results in a double.</div>
+                <div class="option">D) 10 / 3 results in a complex number.</div>
+            </div>
+            <div class="answer">Answer: B) 10 / 3 results in a float.</div>
+        </div>
     </div>
 
-    <div class="content-section">
+    <div class="content">
         <h2 class="section-title">Python Error Analysis</h2>
         <table>
             <tr>
@@ -223,66 +293,39 @@ tr:nth-child(even) {
             </tr>
             <tr>
                 <td>2</td>
-                <td><div class="code">x=5
-    print(x)</div></td>
+                <td><div class="code">x=5<br><br>&emsp;print(x)</div></td>
                 <td class="error-type">Syntax Error</td>
-                <td><div class="code">x = 5
-print(x)</div></td>
+                <td><div class="code">x = 5<br><br>print(x)</div></td>
             </tr>
             <tr>
                 <td>3</td>
-                <td><div class="code">x = float(input('Enter a number: '))
-y = float(input('Enter a number: '))
-z = float(input('Enter a number: '))
-average = x+y+z/3
-print(average)</div></td>
+                <td><div class="code">x = float(input('Enter a number: '))<br>y = float(input('Enter a number: '))<br>z = float(input('Enter a number: '))<br>average = x+y+z/3<br>print(average)</div></td>
                 <td class="error-type">Logical Error</td>
-                <td><div class="code">x = float(input('Enter a number: '))
-y = float(input('Enter a number: '))
-z = float(input('Enter a number: '))
-average = (x + y + z) / 3
-print(average)</div></td>
+                <td><div class="code">x = float(input('Enter a number: '))<br>y = float(input('Enter a number: '))<br>z = float(input('Enter a number: '))<br>average = (x + y + z) / 3<br>print(average)</div></td>
             </tr>
             <tr>
                 <td>4</td>
-                <td><div class="code">This is a comment
-written in more than just one line
-"""</div></td>
+                <td><div class="code">This is a comment<br>written in more than just one line<br>"""</div></td>
                 <td class="error-type">Syntax Error</td>
-                <td><div class="code">"""
-This is a comment
-written in more than just one line
-"""</div></td>
+                <td><div class="code">"""<br>This is a comment<br>written in more than just one line<br>"""</div></td>
             </tr>
             <tr>
                 <td>5</td>
-                <td><div class="code">2xnf = "John"
-Total cost= 456543</div></td>
+                <td><div class="code">2xnf = "John"<br>Total cost= 456543</div></td>
                 <td class="error-type">Syntax Error</td>
-                <td><div class="code">xnf = "John"
-total_cost = 456543</div></td>
+                <td><div class="code">xnf = "John"<br>total_cost = 456543</div></td>
             </tr>
             <tr>
                 <td>6</td>
-                <td><div class="code">X=0
-Y=10
-Z=y/x</div></td>
+                <td><div class="code">X=0<br>Y=10<br>Z=y/x</div></td>
                 <td class="error-type">Runtime Error</td>
-                <td><div class="code">x = 1  # Changed to avoid division by zero
-y = 10
-z = y / x</div></td>
+                <td><div class="code">x = 1  # Changed to avoid division by zero<br>y = 10<br>z = y / x</div></td>
             </tr>
             <tr>
                 <td>7</td>
-                <td><div class="code">a = input('Enter 1st number: ')
-b = int(input('Enter 2nd number: '))
-sum = a+b
-print(sum)</div></td>
+                <td><div class="code">a = input('Enter 1st number: ')<br>b = int(input('Enter 2nd number: '))<br>sum = a+b<br>print(sum)</div></td>
                 <td class="error-type">Runtime Error</td>
-                <td><div class="code">a = int(input('Enter 1st number: '))
-b = int(input('Enter 2nd number: '))
-sum = a + b
-print(sum)</div></td>
+                <td><div class="code">a = int(input('Enter 1st number: '))<br>b = int(input('Enter 2nd number: '))<br>sum = a + b<br>print(sum)</div></td>
             </tr>
         </table>
     </div>
