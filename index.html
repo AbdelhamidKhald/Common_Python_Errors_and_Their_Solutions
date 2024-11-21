@@ -1,341 +1,468 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f0f2f5;
-    padding: 20px;
-    line-height: 1.6;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    overflow: hidden;
-}
-
-.header {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    color: white;
-    padding: 30px;
-    text-align: center;
-}
-
-.content {
-    padding: 30px;
-}
-
-.section-title {
-    color: #1e3c72;
-    margin: 20px 0;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #1e3c72;
-}
-
-.question {
-    background: #f8f9fa;
-    margin: 20px 0;
-    padding: 20px;
-    border-radius: 8px;
-    border-left: 4px solid #1e3c72;
-}
-
-.question h3 {
-    color: #1e3c72;
-    margin-bottom: 15px;
-}
-
-.options {
-    margin: 15px 0;
-    padding-left: 20px;
-}
-
-.option {
-    margin: 8px 0;
-}
-
-.code-block {
-    background: #2d2d2d;
-    color: #fff;
-    padding: 15px;
-    border-radius: 5px;
-    font-family: 'Consolas', monospace;
-    margin: 10px 0;
-}
-
-.answer {
-    background: #e8f5e9;
-    padding: 10px;
-    margin-top: 15px;
-    border-radius: 5px;
-    color: #2e7d32;
-    font-weight: bold;
-}
-
-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 20px 0;
-    background: white;
-}
-
-th, td {
-    border: 1px solid #e0e0e0;
-    padding: 15px;
-    text-align: left;
-    vertical-align: top;
-}
-
-th {
-    background: #2a5298;
-    color: white;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.9em;
-    letter-spacing: 1px;
-}
-
-tr:nth-child(even) {
-    background-color: #f8f9fa;
-}
-
-tr:hover {
-    background-color: #f0f2f5;
-}
-
-.error-type {
-    font-weight: 600;
-    color: #e74c3c;
-}
-
-.footer {
-    background: #2a5298;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    font-size: 1.1em;
-}
-
-.author {
-    display: inline-block;
-    padding: 8px 15px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 20px;
-    margin-top: 10px;
-}
-
-@media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
-    .content {
-        padding: 15px;
-    }
-    th, td {
-        padding: 10px;
-        font-size: 0.9em;
-    }
-    .code-block {
-        font-size: 0.8em;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <title>IT Revision Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        .question:last-child {
+            border-bottom: none;
+        }
+        .question h3 {
+            margin-bottom: 10px;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .fill-blank input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #28a745;
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+        .result {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+        @media (max-width: 768px) {
+            .options label {
+                font-size: 14px;
+            }
+            .submit-btn {
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
 <body>
+
 <div class="container">
-    <div class="header">
-        <h1>Python Programming Guide</h1>
-        <p>Questions, Answers & Error Analysis</p>
-    </div>
-
-    <div class="content">
-        <h2 class="section-title">Python Quiz - Questions and Answers</h2>
-
-        <div class="question">
-            <h3>Q1: What is Python?</h3>
-            <div class="options">
-                <div class="option">A) A high-level programming language</div>
-                <div class="option">B) A low-level programming language</div>
-                <div class="option">C) An operating system</div>
-                <div class="option">D) A type of snake</div>
-            </div>
-            <div class="answer">Answer: A) A high-level programming language</div>
-        </div>
-
-        <div class="question">
-            <h3>Q2: Which of the following is a correct way to declare a variable in Python?</h3>
-            <div class="options">
-                <div class="option">A) int x = 10</div>
-                <div class="option">B) x = 10</div>
-                <div class="option">C) float x = 10.5</div>
-                <div class="option">D) var x = 10</div>
-            </div>
-            <div class="answer">Answer: B) x = 10</div>
-        </div>
-
-        <div class="question">
-            <h3>Q3: Which of the following is a keyword in Python?</h3>
-            <div class="options">
-                <div class="option">A) function</div>
-                <div class="option">B) variable</div>
-                <div class="option">C) class</div>
-                <div class="option">D) define</div>
-            </div>
-            <div class="answer">Answer: C) class</div>
-        </div>
-
-        <div class="question">
-            <h3>Q4: Which of the following is not a valid identifier in Python?</h3>
-            <div class="options">
-                <div class="option">A) my_var</div>
-                <div class="option">B) _var</div>
-                <div class="option">C) 9var</div>
-                <div class="option">D) var9</div>
-            </div>
-            <div class="answer">Answer: C) 9var</div>
-        </div>
-
-        <div class="question">
-            <h3>Q5: What will be the output of the following code?</h3>
-            <div class="code-block">x = 5<br>y = "5"<br>print(x + y)</div>
-            <div class="options">
-                <div class="option">A) 10</div>
-                <div class="option">B) TypeError</div>
-                <div class="option">C) 55</div>
-                <div class="option">D) None of the above</div>
-            </div>
-            <div class="answer">Answer: B) TypeError</div>
-        </div>
-
-        <div class="question">
-            <h3>Q6: What will be the output of the following code?</h3>
-            <div class="code-block">x = 10<br>y = 20<br>print(x + y * 2)</div>
-            <div class="options">
-                <div class="option">A) 60</div>
-                <div class="option">B) 50</div>
-                <div class="option">C) 30</div>
-                <div class="option">D) 40</div>
-            </div>
-            <div class="answer">Answer: B) 50</div>
-        </div>
-
-        <div class="question">
-            <h3>Q7: Which operator is used for exponentiation in Python?</h3>
-            <div class="options">
-                <div class="option">A) ^</div>
-                <div class="option">B) **</div>
-                <div class="option">C) //</div>
-                <div class="option">D) %</div>
-            </div>
-            <div class="answer">Answer: B) **</div>
-        </div>
-
-        <div class="question">
-            <h3>Q8: What is the output of the following code?</h3>
-            <div class="code-block">print(10 / 3)</div>
-            <div class="options">
-                <div class="option">A) 3</div>
-                <div class="option">B) 3.0</div>
-                <div class="option">C) 3.33</div>
-                <div class="option">D) 3.3333333333333335</div>
-            </div>
-            <div class="answer">Answer: D) 3.3333333333333335</div>
-        </div>
-
-        <div class="question">
-            <h3>Q9: What will be the output of the following code?</h3>
-            <div class="code-block">x = "Hello"<br>y = "World"<br>print(x + y)</div>
-            <div class="options">
-                <div class="option">A) Hello World</div>
-                <div class="option">B) HelloWorld</div>
-                <div class="option">C) Hello, World</div>
-                <div class="option">D) None of the above</div>
-            </div>
-            <div class="answer">Answer: B) HelloWorld</div>
-        </div>
-
-        <div class="question">
-            <h3>Q10: Which of the following statements is correct?</h3>
-            <div class="options">
-                <div class="option">A) 10 / 3 results in an integer.</div>
-                <div class="option">B) 10 / 3 results in a float.</div>
-                <div class="option">C) 10 / 3 results in a double.</div>
-                <div class="option">D) 10 / 3 results in a complex number.</div>
-            </div>
-            <div class="answer">Answer: B) 10 / 3 results in a float.</div>
-        </div>
-    </div>
-
-    <div class="content">
-        <h2 class="section-title">Python Error Analysis</h2>
-        <table>
-            <tr>
-                <th>NO</th>
-                <th>Before correcting</th>
-                <th>Type of Error</th>
-                <th>After correcting</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td><div class="code">print("Hello, World!)</div></td>
-                <td class="error-type">Syntax Error</td>
-                <td><div class="code">print("Hello, World!")</div></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td><div class="code">x=5<br><br>&emsp;print(x)</div></td>
-                <td class="error-type">Syntax Error</td>
-                <td><div class="code">x = 5<br><br>print(x)</div></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td><div class="code">x = float(input('Enter a number: '))<br>y = float(input('Enter a number: '))<br>z = float(input('Enter a number: '))<br>average = x+y+z/3<br>print(average)</div></td>
-                <td class="error-type">Logical Error</td>
-                <td><div class="code">x = float(input('Enter a number: '))<br>y = float(input('Enter a number: '))<br>z = float(input('Enter a number: '))<br>average = (x + y + z) / 3<br>print(average)</div></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td><div class="code">This is a comment<br>written in more than just one line<br>"""</div></td>
-                <td class="error-type">Syntax Error</td>
-                <td><div class="code">"""<br>This is a comment<br>written in more than just one line<br>"""</div></td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td><div class="code">2xnf = "John"<br>Total cost= 456543</div></td>
-                <td class="error-type">Syntax Error</td>
-                <td><div class="code">xnf = "John"<br>total_cost = 456543</div></td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td><div class="code">X=0<br>Y=10<br>Z=y/x</div></td>
-                <td class="error-type">Runtime Error</td>
-                <td><div class="code">x = 1  # Changed to avoid division by zero<br>y = 10<br>z = y / x</div></td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td><div class="code">a = input('Enter 1st number: ')<br>b = int(input('Enter 2nd number: '))<br>sum = a+b<br>print(sum)</div></td>
-                <td class="error-type">Runtime Error</td>
-                <td><div class="code">a = int(input('Enter 1st number: '))<br>b = int(input('Enter 2nd number: '))<br>sum = a + b<br>print(sum)</div></td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="footer">
-        <div class="author">
-            <i>Created by</i>
-            <strong>Abdelhamid Khald</strong>
-        </div>
+    <h1>IT Revision Quiz</h1>
+    <form id="quizForm">
+        <!-- Questions will be injected here by JavaScript -->
+    </form>
+    <button class="submit-btn" id="submitBtn">Submit Answers</button>
+    <div class="result" id="result">
+        <h2>Your Score: <span id="score"></span>/<span id="total"></span></h2>
+        <div id="feedback"></div>
     </div>
 </div>
+
+<script>
+    const questions = [
+        // Multiple Choice Questions
+        {
+            id: 1,
+            type: 'mcq',
+            question: 'Hardware refers to:',
+            options: [
+                'A. Physical components that you can see and touch',
+                'B. Programs stored on the computer',
+                'C. Drivers',
+                'D. The Operating System'
+            ],
+            answer: 'A'
+        },
+        {
+            id: 2,
+            type: 'mcq',
+            question: 'There are 1024 Megabytes to a:',
+            options: [
+                'A. Kilobyte',
+                'B. Byte',
+                'C. Gigabyte',
+                'D. Terabyte'
+            ],
+            answer: 'C'
+        },
+        {
+            id: 3,
+            type: 'mcq',
+            question: 'The smallest unit of memory is called a:',
+            options: [
+                'A. Bit',
+                'B. Byte',
+                'C. Mb',
+                'D. KB'
+            ],
+            answer: 'A'
+        },
+        {
+            id: 4,
+            type: 'mcq',
+            question: 'Which of the following is NOT an output device?',
+            options: [
+                'A. Keyboard',
+                'B. Printer',
+                'C. Speaker',
+                'D. Plotter'
+            ],
+            answer: 'A'
+        },
+        {
+            id: 5,
+            type: 'mcq',
+            question: 'Which of the following is NOT an input device?',
+            options: [
+                'A. Keyboard',
+                'B. Printer',
+                'C. Digital Camera',
+                'D. Scanner'
+            ],
+            answer: 'B'
+        },
+        {
+            id: 6,
+            type: 'mcq',
+            question: 'Which of the following devices has the highest storage capacity?',
+            options: [
+                'A. Zip disk',
+                'B. Floppy Disk',
+                'C. CD-R/CD-RW',
+                'D. Hard disk'
+            ],
+            answer: 'D'
+        },
+        {
+            id: 7,
+            type: 'mcq',
+            question: 'Linux, Windows XP, and Vista are examples of:',
+            options: [
+                'A. Application software',
+                'B. Freeware',
+                'C. Operating System software',
+                'D. Hardware'
+            ],
+            answer: 'C'
+        },
+        {
+            id: 8,
+            type: 'mcq',
+            question: 'Operating system software is used for:',
+            options: [
+                'A. Performing mail merge procedures',
+                'B. Creating presentations',
+                'C. Managing files and folders',
+                'D. Creating leaflets and posters'
+            ],
+            answer: 'C'
+        },
+        {
+            id: 9,
+            type: 'mcq',
+            question: 'To test if a problem is with the keyboard, you should:',
+            options: [
+                'A. Connect the keyboard to another computer to check for errors',
+                'B. Change the monitor',
+                'C. Disconnect the keyboard and use the mouse',
+                'D. Change the keyboard language'
+            ],
+            answer: 'A'
+        },
+        {
+            id: 10,
+            type: 'mcq',
+            question: 'The Windows Task Manager enables the user to:',
+            options: [
+                'A. Manage un-responsive programs',
+                'B. Manage Start-up options',
+                'C. Manage the CPU',
+                'D. Manage Schedules'
+            ],
+            answer: 'A'
+        },
+        // ... (Add all other multiple-choice questions here following the same structure)
+
+        // True/False Questions
+        {
+            id: 51,
+            type: 'true-false',
+            question: 'The monitor, keyboard, and mouse are all examples of software.',
+            answer: 'False'
+        },
+        {
+            id: 52,
+            type: 'true-false',
+            question: 'Hard drives can store data permanently, even without power.',
+            answer: 'True'
+        },
+        {
+            id: 53,
+            type: 'true-false',
+            question: 'Touchscreens are considered both input and output devices.',
+            answer: 'True'
+        },
+        {
+            id: 54,
+            type: 'true-false',
+            question: 'The Control Unit (CU) fetches instructions from the CPU\'s memory.',
+            answer: 'False'
+        },
+        {
+            id: 55,
+            type: 'true-false',
+            question: 'The CPU fetches instructions from the computer\'s permanent memory (ROM).',
+            answer: 'False'
+        },
+        {
+            id: 56,
+            type: 'true-false',
+            question: 'A higher clock speed always indicates a faster CPU.',
+            answer: 'True'
+        },
+        {
+            id: 57,
+            type: 'true-false',
+            question: 'The motherboard is responsible for providing power to all other components in the computer.',
+            answer: 'False'
+        },
+        {
+            id: 58,
+            type: 'true-false',
+            question: 'CPU sockets determine the type of RAM a motherboard can support.',
+            answer: 'False'
+        },
+        {
+            id: 59,
+            type: 'true-false',
+            question: 'All motherboards offer the same variety and number of connectors and ports.',
+            answer: 'False'
+        },
+        {
+            id: 60,
+            type: 'true-false',
+            question: 'A quad-core CPU can process four instructions simultaneously.',
+            answer: 'True'
+        },
+        // ... (Add all other True/False questions here following the same structure)
+
+        // Fill in the Blanks Questions
+        {
+            id: 101,
+            type: 'fill-blank',
+            question: '1. --------- is known as a main memory.',
+            answer: 'RAM'
+        },
+        {
+            id: 102,
+            type: 'fill-blank',
+            question: '2. A memory that requires refreshing of data is ------------- .',
+            answer: 'Dynamic RAM'
+        },
+        {
+            id: 103,
+            type: 'fill-blank',
+            question: '3. Program which acts as an interface between a user and the hardware is called ------------.',
+            answer: 'Operating system'
+        },
+        {
+            id: 104,
+            type: 'fill-blank',
+            question: '4. Smallest Quantum of data is ------------------------.',
+            answer: 'Bit'
+        },
+        {
+            id: 105,
+            type: 'fill-blank',
+            question: '5. A string of 8 bits is ------------------------- .',
+            answer: 'Byte'
+        },
+        {
+            id: 106,
+            type: 'fill-blank',
+            question: '6. A set of instructions is called -------------.',
+            answer: 'Program'
+        },
+        {
+            id: 107,
+            type: 'fill-blank',
+            question: '7. CPU stands for --------------------- .',
+            answer: 'Central Processing Unit'
+        },
+        {
+            id: 108,
+            type: 'fill-blank',
+            question: '8. Light pen is ------------------ device.',
+            answer: 'Input'
+        },
+        {
+            id: 109,
+            type: 'fill-blank',
+            question: '9. ----------------- is a pointing device.',
+            answer: 'Mouse'
+        },
+        {
+            id: 110,
+            type: 'fill-blank',
+            question: '10. --------------- is a primary memory.',
+            answer: 'RAM'
+        },
+        {
+            id: 111,
+            type: 'fill-blank',
+            question: '11. ----------------- memory is faster than main memory.',
+            answer: 'Cache memory'
+        },
+        // ... (Add any additional Fill in the Blanks questions here following the same structure)
+    ];
+
+    const quizForm = document.getElementById('quizForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const resultDiv = document.getElementById('result');
+    const scoreSpan = document.getElementById('score');
+    const totalSpan = document.getElementById('total');
+    const feedbackDiv = document.getElementById('feedback');
+
+    function renderQuiz() {
+        questions.forEach(q => {
+            const questionDiv = document.createElement('div');
+            questionDiv.classList.add('question');
+
+            const questionTitle = document.createElement('h3');
+            questionTitle.innerText = `${q.id}. ${q.question}`;
+            questionDiv.appendChild(questionTitle);
+
+            if (q.type === 'mcq') {
+                const optionsDiv = document.createElement('div');
+                optionsDiv.classList.add('options');
+                q.options.forEach(option => {
+                    const label = document.createElement('label');
+                    const input = document.createElement('input');
+                    input.type = 'radio';
+                    input.name = `question${q.id}`;
+                    input.value = option.charAt(0); // Assuming first character is option letter
+                    label.appendChild(input);
+                    label.appendChild(document.createTextNode(option));
+                    optionsDiv.appendChild(label);
+                });
+                questionDiv.appendChild(optionsDiv);
+            } else if (q.type === 'true-false') {
+                const optionsDiv = document.createElement('div');
+                optionsDiv.classList.add('options');
+                ['True', 'False'].forEach(option => {
+                    const label = document.createElement('label');
+                    const input = document.createElement('input');
+                    input.type = 'radio';
+                    input.name = `question${q.id}`;
+                    input.value = option;
+                    label.appendChild(input);
+                    label.appendChild(document.createTextNode(option));
+                    optionsDiv.appendChild(label);
+                });
+                questionDiv.appendChild(optionsDiv);
+            } else if (q.type === 'fill-blank') {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.name = `question${q.id}`;
+                input.placeholder = 'Your answer here';
+                input.classList.add('fill-blank');
+                questionDiv.appendChild(input);
+            }
+
+            quizForm.appendChild(questionDiv);
+        });
+    }
+
+    function calculateScore() {
+        let score = 0;
+        let total = questions.length;
+        feedbackDiv.innerHTML = '';
+
+        questions.forEach(q => {
+            const userAnswer = getUserAnswer(q);
+            const isCorrect = checkAnswer(q, userAnswer);
+            if (isCorrect) score++;
+
+            // Feedback
+            const feedback = document.createElement('p');
+            feedback.innerHTML = `<strong>Question ${q.id}:</strong> ${isCorrect ? '<span class="correct">Correct</span>' : `<span class="incorrect">Incorrect</span> (Correct Answer: ${q.answer})`}`;
+            feedbackDiv.appendChild(feedback);
+        });
+
+        scoreSpan.innerText = score;
+        totalSpan.innerText = total;
+        resultDiv.style.display = 'block';
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function getUserAnswer(question) {
+        if (question.type === 'mcq' || question.type === 'true-false') {
+            const options = document.getElementsByName(`question${question.id}`);
+            for (let option of options) {
+                if (option.checked) {
+                    return option.value;
+                }
+            }
+            return '';
+        } else if (question.type === 'fill-blank') {
+            const input = document.querySelector(`input[name="question${question.id}"]`);
+            return input.value.trim();
+        }
+    }
+
+    function checkAnswer(question, userAnswer) {
+        if (question.type === 'mcq' || question.type === 'true-false') {
+            return userAnswer.toLowerCase() === question.answer.toLowerCase();
+        } else if (question.type === 'fill-blank') {
+            return userAnswer.toLowerCase() === question.answer.toLowerCase();
+        }
+    }
+
+    // Initialize Quiz
+    renderQuiz();
+
+    // Event Listener
+    submitBtn.addEventListener('click', function() {
+        calculateScore();
+    });
+</script>
+
 </body>
 </html>
