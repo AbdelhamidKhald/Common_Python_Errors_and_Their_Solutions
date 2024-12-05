@@ -1,468 +1,343 @@
 <!DOCTYPE html>
-<html lang="en">
+<html dir="rtl" lang="ar">
 <head>
     <meta charset="UTF-8">
-    <title>IT Revision Quiz</title>
+    <title>البحث في اسامي الطلاب الي دخلت ريسب فيزياء</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            direction: rtl;
         }
         .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-            overflow: hidden;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        h1, h2 {
+        h1 {
+            color: #1a73e8;
             text-align: center;
-            color: #333;
+            margin-bottom: 30px;
+            font-size: 2em;
         }
-        .question {
+        .search-container {
+            position: relative;
             margin-bottom: 20px;
-            padding: 15px;
-            border-bottom: 1px solid #ddd;
         }
-        .question:last-child {
-            border-bottom: none;
-        }
-        .question h3 {
-            margin-bottom: 10px;
-        }
-        .options label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .fill-blank input {
+        .search-box {
             width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            box-sizing: border-box;
-        }
-        .submit-btn {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background-color: #28a745;
-            border: none;
-            color: #fff;
+            padding: 15px 45px 15px 15px;
             font-size: 18px;
-            cursor: pointer;
-            margin-top: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
         }
-        .submit-btn:hover {
-            background-color: #218838;
+        .search-box:focus {
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 3px rgba(26,115,232,0.2);
+            outline: none;
+        }
+        .filter-options {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .filter-options select {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            margin: 10px;
         }
         .result {
-            display: none;
-            margin-top: 20px;
             padding: 15px;
-            background-color: #e9ecef;
-            border: 1px solid #ced4da;
+            margin: 10px 0;
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            transition: transform 0.2s ease;
         }
-        .correct {
-            color: green;
+        .result:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-color: #1a73e8;
         }
-        .incorrect {
-            color: red;
+        .highlight {
+            background-color: #e8f0fe;
+            padding: 2px 4px;
+            border-radius: 3px;
         }
-        @media (max-width: 768px) {
-            .options label {
-                font-size: 14px;
-            }
-            .submit-btn {
-                font-size: 16px;
-            }
+        .no-result, .count {
+            text-align: center;
+            color: #666;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            color: #666;
+            font-size: 14px;
+        }
+        .creator {
+            color: #1a73e8;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <h1>IT Revision Quiz</h1>
-    <form id="quizForm">
-        <!-- Questions will be injected here by JavaScript -->
-    </form>
-    <button class="submit-btn" id="submitBtn">Submit Answers</button>
-    <div class="result" id="result">
-        <h2>Your Score: <span id="score"></span>/<span id="total"></span></h2>
-        <div id="feedback"></div>
+    <div class="container">
+        <h1>البحث في اسامي الطلاب الي دخلت ريسب فيزياء</h1>
+        <div class="search-container">
+            <input type="text" 
+                   id="searchInput" 
+                   class="search-box" 
+                   placeholder="اكتب اسم الطالب للبحث..."
+                   autocomplete="off">
+        </div>
+        <div class="filter-options">
+            <label for="filterAlpha">التصفية حسب الأحرف:</label>
+            <select id="filterAlpha">
+                <option value="">الكل</option>
+                <option value="أ">أ</option>
+                <option value="ب">ب</option>
+                <option value="ت">ت</option>
+                <option value="ث">ث</option>
+                <option value="ج">ج</option>
+                <option value="ح">ح</option>
+                <option value="خ">خ</option>
+                <option value="د">د</option>
+                <option value="ذ">ذ</option>
+                <option value="ر">ر</option>
+                <option value="ز">ز</option>
+                <option value="س">س</option>
+                <option value="ش">ش</option>
+                <option value="ص">ص</option>
+                <option value="ض">ض</option>
+                <option value="ط">ط</option>
+                <option value="ظ">ظ</option>
+                <option value="ع">ع</option>
+                <option value="غ">غ</option>
+                <option value="ف">ف</option>
+                <option value="ق">ق</option>
+                <option value="ك">ك</option>
+                <option value="ل">ل</option>
+                <option value="م">م</option>
+                <option value="ن">ن</option>
+                <option value="هـ">هـ</option>
+                <option value="و">و</option>
+                <option value="ي">ي</option>
+            </select>
+        </div>
+        <div id="results"></div>
+        <div id="count" class="count"></div>
+        <div class="footer">
+            تم الإنشاء بواسطة <span class="creator">Abdelhamid Khald</span>
+        </div>
     </div>
-</div>
 
-<script>
-    const questions = [
-        // Multiple Choice Questions
-        {
-            id: 1,
-            type: 'mcq',
-            question: 'Hardware refers to:',
-            options: [
-                'A. Physical components that you can see and touch',
-                'B. Programs stored on the computer',
-                'C. Drivers',
-                'D. The Operating System'
-            ],
-            answer: 'A'
-        },
-        {
-            id: 2,
-            type: 'mcq',
-            question: 'There are 1024 Megabytes to a:',
-            options: [
-                'A. Kilobyte',
-                'B. Byte',
-                'C. Gigabyte',
-                'D. Terabyte'
-            ],
-            answer: 'C'
-        },
-        {
-            id: 3,
-            type: 'mcq',
-            question: 'The smallest unit of memory is called a:',
-            options: [
-                'A. Bit',
-                'B. Byte',
-                'C. Mb',
-                'D. KB'
-            ],
-            answer: 'A'
-        },
-        {
-            id: 4,
-            type: 'mcq',
-            question: 'Which of the following is NOT an output device?',
-            options: [
-                'A. Keyboard',
-                'B. Printer',
-                'C. Speaker',
-                'D. Plotter'
-            ],
-            answer: 'A'
-        },
-        {
-            id: 5,
-            type: 'mcq',
-            question: 'Which of the following is NOT an input device?',
-            options: [
-                'A. Keyboard',
-                'B. Printer',
-                'C. Digital Camera',
-                'D. Scanner'
-            ],
-            answer: 'B'
-        },
-        {
-            id: 6,
-            type: 'mcq',
-            question: 'Which of the following devices has the highest storage capacity?',
-            options: [
-                'A. Zip disk',
-                'B. Floppy Disk',
-                'C. CD-R/CD-RW',
-                'D. Hard disk'
-            ],
-            answer: 'D'
-        },
-        {
-            id: 7,
-            type: 'mcq',
-            question: 'Linux, Windows XP, and Vista are examples of:',
-            options: [
-                'A. Application software',
-                'B. Freeware',
-                'C. Operating System software',
-                'D. Hardware'
-            ],
-            answer: 'C'
-        },
-        {
-            id: 8,
-            type: 'mcq',
-            question: 'Operating system software is used for:',
-            options: [
-                'A. Performing mail merge procedures',
-                'B. Creating presentations',
-                'C. Managing files and folders',
-                'D. Creating leaflets and posters'
-            ],
-            answer: 'C'
-        },
-        {
-            id: 9,
-            type: 'mcq',
-            question: 'To test if a problem is with the keyboard, you should:',
-            options: [
-                'A. Connect the keyboard to another computer to check for errors',
-                'B. Change the monitor',
-                'C. Disconnect the keyboard and use the mouse',
-                'D. Change the keyboard language'
-            ],
-            answer: 'A'
-        },
-        {
-            id: 10,
-            type: 'mcq',
-            question: 'The Windows Task Manager enables the user to:',
-            options: [
-                'A. Manage un-responsive programs',
-                'B. Manage Start-up options',
-                'C. Manage the CPU',
-                'D. Manage Schedules'
-            ],
-            answer: 'A'
-        },
-        // ... (Add all other multiple-choice questions here following the same structure)
+    <script>
+        const students = [
+            "نادر محمد علي احمد",
+            "ندا عصام محمد عبدربه",
+            "عبدالله محمد جمعه السيد",
+            "ورده محمد علي احمد",
+            "منه الله سعيد عبدالفتاح محمود",
+            "ندا سامي محمد",
+            "مهند سعد احمد محمد",
+            "نور حسام الدين عباس محمد",
+            "ملك عمر صابر زكي",
+            "ملك وليد محمد عبد المعز",
+            "مينا اسحاق رمزي مختار",
+            "احمد محمد عبد ربه احمد",
+            "يوسف احمد هاشم محمد",
+            "ياسمين احمد السعيد الجرحى",
+            "ملك صبحي عبدالمعبود علي",
+            "منه الله هاني محمد حساني",
+            "مؤمن جمال ربيع عبد الباقي",
+            "يحي عصام يحي عبدالرحمن",
+            "نور حمدي احمد سليم",
+            "منه الله حسن محمد شعراوي",
+            "منه عبدالعزيز محمد شفيق",
+            "منه عباس حسين عباس حسن",
+            "عبدالله علي اسماعيل عبدالله",
+            "محمد حيدر عبدالرحمن حسن",
+            "حسن سامح حسن عبدالمجيد",
+            "دميانه سامي معوض",
+            "محمود بكر عبدالبدبع",
+            "عمر ناصر احمد عمار",
+            "عبدالرحمن عصام الدين محمد",
+            "محمد مصطفى محمد محمود",
+            "بدر رضا محمد سعيد",
+            "زياد طارق حسني عطية",
+            "عمرو وليد محمدي رمضان",
+            "احمد نبيل احمد السيد كاشف",
+            "محمود ابراهيم محمد احمد",
+            "يوسف محمد علي السيد",
+            "يوسف نبيل خيري",
+            "بسمله عمر محمد عيد",
+            "ريم احمد درويش",
+            "يوسف حامد الفرماوي حسن",
+            "شيماء مصطفى محمد عبد الحفيظ",
+            "هاجر احمد علي بدر",
+            "يوسف محمد مصطفى هاشم",
+            "يوسف محمد محمود محمد فرج الله",
+            "رويده محمد عبدالعليم محمد",
+            "ابراهيم رسلان البدري ابراهيم الدسوقي",
+            "سيد ابراهيم سيد احمد",
+            "يوسف محمد بهنسي",
+            "مروه احمد محمد حلمي",
+            "محمد احمد سيد احمد",
+            "محمود وائل محمود علي",
+            "محمد عماد محمد محمد",
+            "محمد محمد سليمان ابراهيم",
+            "محمد احمد الشافعي محمد",
+            "معتز محمد عبدالعظيم عباس",
+            "مريم عمر حسن عبدالباسط",
+            "ملك احمد ماهر مرسي",
+            "مصطفى هاني حسن",
+            "محمد علاء فوزي",
+            "محمد ياسر محب ابراهيم",
+            "محمد نعيم خميس نعيم",
+            "مجدي حمدي السيد بيومي",
+            "عمرو محمود عبدالله محمد صفوت",
+            "معاذ احمد غريب عبد اللطيف",
+            "محمد عصام محمود صابر",
+            "مصطفى احمد محمد ابودقه",
+            "محمد محسن رمضان مرسي",
+            "محمد شعبان سلطان محمد",
+            "محمد جمال عبدالمعبود قطب",
+            "ادهم حاتم محمد عبدالفتاح",
+            "شهد حسني عبد العزيز جادالله",
+            "يوسف محمد خليفه محمد",
+            "مازن مصطفى محمد مرزوق",
+            "محمد علي عبدالستار",
+            "نور الدين كمال محمد",
+            "مصطفى عاطف ابو السعود",
+            "اسلام صلاح عبدالعظيم علي",
+            "جني محمد سعيد محمد",
+            "حازم محمود عبدالحليم",
+            "يوسف كارم يوسف محمد",
+            "محمد سيد حميده",
+            "عبدالرحمن طه رزق",
+            "عبدالله محمد عبدالله",
+            "عبدالله السيد فوزي السيد",
+            "صافي ايمن امام السيد",
+            "ليلى احمد جمعه عبدالصادق",
+            "مريم صلاح منصف محمد",
+            "طه عاطف مسلم",
+            "عبدالله عرفات احمد محمد",
+            "مروه ايمن عاطف زين الدين",
+            "ملك حامد محمد",
+            "محمد فتحي حسين محمد",
+            "محمود مصطفى ابو الوفا محمد",
+            "روان اشرف محمد صادق محمد",
+            "داليا احمد علي محمد",
+            "خلود اسامه محمد عباس",
+            "سما امير كمال ابراهيم عبدالرسول",
+            "دنيا عبدالهادي محمود الجزار",
+            "حسين محمود حسين محمود",
+            "حازم محمد ابراهيم الشحات",
+            "عبدالله حماده عبدالله حسن",
+            "عبدالرحمن احمد عباس سيد",
+            "عبدالرحمن محمود عبدالنبي محمود",
+            "سيف اشرف عبدالعزيز محمد فهمي",
+            "عبدالرحمن عادل سيد",
+            "عبير كرم احمد محمد",
+            "شهد محمد محمود",
+            "محمد محمود حسن",
+            "عمر خالد طه محمود",
+            "ليديا سامي بسيوني",
+            "عمرو محمود احمد محمود",
+            "عمرو خالد محمد علي",
+            "سهيله مصطفى محمد مصطفى",
+            "ربيع عماد ربيع انور",
+            "سليمان عماد سليمان الشافعي",
+            "حسين محمد عطا احمد",
+            "حسن احمد امين حسن فرغلي",
+            "سندس مجدي احمد مصطفى",
+            "حسام احمد عبدالفتاح ابراهيم محمد",
+            "احمد سيد احمد سيد",
+            "كريم احمد عاطف",
+            "ادهم عبدالسميع محمود علي",
+            "بلال وليد محمد العقاد",
+            "سندي رضا فايز رزق",
+            "سيف احمد عبدالغني محمد",
+            "ربيع كريم ربيع عبدالكريم",
+            "احمد صلاح الدين عبدالخالق علي",
+            "انس محمد حنفي محمد",
+            "احمد حاتم سعيد",
+            "احمد محمد سيد علي محمد",
+            "احمد ابو العز سعد زغلول",
+            "اياد احمد علي جعفر",
+            "ادهم عماد محمد حلمي",
+            "اسلام شريف عبدالمنعم محمد",
+            "احمد حسن",
+            "اسراء مشهور احمد عبدالمحسن",
+            "احمد محمد ياقوت محمد",
+            "احمد محمد محمود عبدالرحمن"
+        ];
 
-        // True/False Questions
-        {
-            id: 51,
-            type: 'true-false',
-            question: 'The monitor, keyboard, and mouse are all examples of software.',
-            answer: 'False'
-        },
-        {
-            id: 52,
-            type: 'true-false',
-            question: 'Hard drives can store data permanently, even without power.',
-            answer: 'True'
-        },
-        {
-            id: 53,
-            type: 'true-false',
-            question: 'Touchscreens are considered both input and output devices.',
-            answer: 'True'
-        },
-        {
-            id: 54,
-            type: 'true-false',
-            question: 'The Control Unit (CU) fetches instructions from the CPU\'s memory.',
-            answer: 'False'
-        },
-        {
-            id: 55,
-            type: 'true-false',
-            question: 'The CPU fetches instructions from the computer\'s permanent memory (ROM).',
-            answer: 'False'
-        },
-        {
-            id: 56,
-            type: 'true-false',
-            question: 'A higher clock speed always indicates a faster CPU.',
-            answer: 'True'
-        },
-        {
-            id: 57,
-            type: 'true-false',
-            question: 'The motherboard is responsible for providing power to all other components in the computer.',
-            answer: 'False'
-        },
-        {
-            id: 58,
-            type: 'true-false',
-            question: 'CPU sockets determine the type of RAM a motherboard can support.',
-            answer: 'False'
-        },
-        {
-            id: 59,
-            type: 'true-false',
-            question: 'All motherboards offer the same variety and number of connectors and ports.',
-            answer: 'False'
-        },
-        {
-            id: 60,
-            type: 'true-false',
-            question: 'A quad-core CPU can process four instructions simultaneously.',
-            answer: 'True'
-        },
-        // ... (Add all other True/False questions here following the same structure)
+        const searchInput = document.getElementById('searchInput');
+        const resultsDiv = document.getElementById('results');
+        const countDiv = document.getElementById('count');
+        const filterAlpha = document.getElementById('filterAlpha');
 
-        // Fill in the Blanks Questions
-        {
-            id: 101,
-            type: 'fill-blank',
-            question: '1. --------- is known as a main memory.',
-            answer: 'RAM'
-        },
-        {
-            id: 102,
-            type: 'fill-blank',
-            question: '2. A memory that requires refreshing of data is ------------- .',
-            answer: 'Dynamic RAM'
-        },
-        {
-            id: 103,
-            type: 'fill-blank',
-            question: '3. Program which acts as an interface between a user and the hardware is called ------------.',
-            answer: 'Operating system'
-        },
-        {
-            id: 104,
-            type: 'fill-blank',
-            question: '4. Smallest Quantum of data is ------------------------.',
-            answer: 'Bit'
-        },
-        {
-            id: 105,
-            type: 'fill-blank',
-            question: '5. A string of 8 bits is ------------------------- .',
-            answer: 'Byte'
-        },
-        {
-            id: 106,
-            type: 'fill-blank',
-            question: '6. A set of instructions is called -------------.',
-            answer: 'Program'
-        },
-        {
-            id: 107,
-            type: 'fill-blank',
-            question: '7. CPU stands for --------------------- .',
-            answer: 'Central Processing Unit'
-        },
-        {
-            id: 108,
-            type: 'fill-blank',
-            question: '8. Light pen is ------------------ device.',
-            answer: 'Input'
-        },
-        {
-            id: 109,
-            type: 'fill-blank',
-            question: '9. ----------------- is a pointing device.',
-            answer: 'Mouse'
-        },
-        {
-            id: 110,
-            type: 'fill-blank',
-            question: '10. --------------- is a primary memory.',
-            answer: 'RAM'
-        },
-        {
-            id: 111,
-            type: 'fill-blank',
-            question: '11. ----------------- memory is faster than main memory.',
-            answer: 'Cache memory'
-        },
-        // ... (Add any additional Fill in the Blanks questions here following the same structure)
-    ];
+        function highlightText(text, searchTerm) {
+            if (!searchTerm) return text;
+            const regex = new RegExp(`(${searchTerm})`, 'gi');
+            return text.replace(regex, '<span class="highlight">$1</span>');
+        }
 
-    const quizForm = document.getElementById('quizForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const resultDiv = document.getElementById('result');
-    const scoreSpan = document.getElementById('score');
-    const totalSpan = document.getElementById('total');
-    const feedbackDiv = document.getElementById('feedback');
+        function debounceSearch(callback, delay = 300) {
+            clearTimeout(window.searchTimeout);
+            window.searchTimeout = setTimeout(callback, delay);
+        }
 
-    function renderQuiz() {
-        questions.forEach(q => {
-            const questionDiv = document.createElement('div');
-            questionDiv.classList.add('question');
+        searchInput.addEventListener('input', () => debounceSearch(performSearch));
+        filterAlpha.addEventListener('change', performSearch);
 
-            const questionTitle = document.createElement('h3');
-            questionTitle.innerText = `${q.id}. ${q.question}`;
-            questionDiv.appendChild(questionTitle);
+        function performSearch() {
+            const searchTerm = searchInput.value.trim();
+            const filterValue = filterAlpha.value.trim();
+            resultsDiv.innerHTML = '';
 
-            if (q.type === 'mcq') {
-                const optionsDiv = document.createElement('div');
-                optionsDiv.classList.add('options');
-                q.options.forEach(option => {
-                    const label = document.createElement('label');
-                    const input = document.createElement('input');
-                    input.type = 'radio';
-                    input.name = `question${q.id}`;
-                    input.value = option.charAt(0); // Assuming first character is option letter
-                    label.appendChild(input);
-                    label.appendChild(document.createTextNode(option));
-                    optionsDiv.appendChild(label);
-                });
-                questionDiv.appendChild(optionsDiv);
-            } else if (q.type === 'true-false') {
-                const optionsDiv = document.createElement('div');
-                optionsDiv.classList.add('options');
-                ['True', 'False'].forEach(option => {
-                    const label = document.createElement('label');
-                    const input = document.createElement('input');
-                    input.type = 'radio';
-                    input.name = `question${q.id}`;
-                    input.value = option;
-                    label.appendChild(input);
-                    label.appendChild(document.createTextNode(option));
-                    optionsDiv.appendChild(label);
-                });
-                questionDiv.appendChild(optionsDiv);
-            } else if (q.type === 'fill-blank') {
-                const input = document.createElement('input');
-                input.type = 'text';
-                input.name = `question${q.id}`;
-                input.placeholder = 'Your answer here';
-                input.classList.add('fill-blank');
-                questionDiv.appendChild(input);
+            let filteredStudents = students;
+
+            if (filterValue) {
+                filteredStudents = filteredStudents.filter(student => student.startsWith(filterValue));
             }
 
-            quizForm.appendChild(questionDiv);
-        });
-    }
-
-    function calculateScore() {
-        let score = 0;
-        let total = questions.length;
-        feedbackDiv.innerHTML = '';
-
-        questions.forEach(q => {
-            const userAnswer = getUserAnswer(q);
-            const isCorrect = checkAnswer(q, userAnswer);
-            if (isCorrect) score++;
-
-            // Feedback
-            const feedback = document.createElement('p');
-            feedback.innerHTML = `<strong>Question ${q.id}:</strong> ${isCorrect ? '<span class="correct">Correct</span>' : `<span class="incorrect">Incorrect</span> (Correct Answer: ${q.answer})`}`;
-            feedbackDiv.appendChild(feedback);
-        });
-
-        scoreSpan.innerText = score;
-        totalSpan.innerText = total;
-        resultDiv.style.display = 'block';
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-    function getUserAnswer(question) {
-        if (question.type === 'mcq' || question.type === 'true-false') {
-            const options = document.getElementsByName(`question${question.id}`);
-            for (let option of options) {
-                if (option.checked) {
-                    return option.value;
-                }
+            if (searchTerm) {
+                filteredStudents = filteredStudents.filter(student =>
+                    student.toLowerCase().includes(searchTerm.toLowerCase())
+                );
             }
-            return '';
-        } else if (question.type === 'fill-blank') {
-            const input = document.querySelector(`input[name="question${question.id}"]`);
-            return input.value.trim();
+
+            if (filteredStudents.length > 0) {
+                filteredStudents.forEach(student => {
+                    const div = document.createElement('div');
+                    div.className = 'result';
+                    div.innerHTML = highlightText(student, searchTerm);
+                    resultsDiv.appendChild(div);
+                });
+            } else {
+                resultsDiv.innerHTML = '<div class="no-result">لا توجد نتائج مطابقة للبحث</div>';
+            }
+
+            countDiv.textContent = `تم العثور على ${filteredStudents.length} من ${students.length} طالب`;
         }
-    }
 
-    function checkAnswer(question, userAnswer) {
-        if (question.type === 'mcq' || question.type === 'true-false') {
-            return userAnswer.toLowerCase() === question.answer.toLowerCase();
-        } else if (question.type === 'fill-blank') {
-            return userAnswer.toLowerCase() === question.answer.toLowerCase();
-        }
-    }
-
-    // Initialize Quiz
-    renderQuiz();
-
-    // Event Listener
-    submitBtn.addEventListener('click', function() {
-        calculateScore();
-    });
-</script>
-
+        // عرض كل الطلاب عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', performSearch);
+    </script>
 </body>
 </html>
